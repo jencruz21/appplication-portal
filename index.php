@@ -2,7 +2,6 @@
 require "includes/db.php";
 require "includes/email.php";
 require "includes/functions.php";
-require "includes/zoom.php";
 // require "includes/mail.php";
 
 if (isset($_POST["submit"])) {
