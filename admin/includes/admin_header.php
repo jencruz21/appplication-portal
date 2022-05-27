@@ -9,7 +9,7 @@
 </head>
 <body>
     <nav class="navbar navbar-light bg-light mb-5 container-fluid">
-      <a class="navbar-brand" href="index.php">MGHS Applicaiton Form</a>
+      <a class="navbar-brand" href="index.php">MGHS Application Form</a>
       <?php
       if (isset($_SESSION["username"])) {
       ?>
@@ -20,7 +20,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-            <li><a class="dropdown-item" href="settings.php">Settings</a></li>
+            <li><a class="dropdown-item" href="admins.php">Manage Admins</a></li>
           </ul>
         </div>
         <?php } else { ?>
