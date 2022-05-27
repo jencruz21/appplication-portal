@@ -58,6 +58,23 @@ function login($conn, $username, $password) {
     }
 }
 
+function authorizeUser($conn, $username, $password, $role) {
+    $query = "SELECT role FROM application_portal_admin WHERE username = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+
+    if ($row["role"] == $role) {
+        login($conn, $username, $password);
+        return true;
+    } else {
+        return false;
+    }
+}
+
 // admin/moderator dashboard functions
 
 function getApplicantById($conn, $id) {

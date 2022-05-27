@@ -11,7 +11,7 @@ if(isset($_POST["submit"])) {
     if ($username === "" || $password === "" || $role == "SELECT") {
         header("Location: login.php");
     } else {
-        if (login($conn, $username, $password, $role)) {
+        if (authorizeUser($conn, $username, $password, $role)) {
             session_start();
             $_SESSION["username"] = $username;
             $_SESSION["role"] = $role;
