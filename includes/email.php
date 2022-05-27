@@ -28,7 +28,7 @@ function sendEmail($email, $name) {
 
         $mail->Subject = 'Invitation for Orientation';
         $mail->isHTML(true);
-        $mail->msgHTML(file_get_contents('templates/orientation/index.html'), IMG_DIR);
+        $mail->msgHTML(file_get_contents('templates/html-template/index.html'), IMG_DIR);
         // $mail->Body = buildOrientationTemplate($name, $sched, $zoom_link, $zoom_pwd);
         $mail->send();
         

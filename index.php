@@ -30,9 +30,10 @@ if (isset($_POST["submit"])) {
         header("location: " . $_SERVER['PHP_SELF'] . "?error=Please fill all the fields!");
         die();
     } else {
+        $date = date("Y/m/d");
         sendEmail($email, $name);
         saveFormData(
-            $conn, $name, "pre-screening", $email, $contactNo, $school, $branch, $course, $gdrive_link);
+            $conn, $name, "pre-screening", $email, $contactNo, $school, $branch, $course, $gdrive_link, $skills, $date);
         header("location: success.php");
     }
 }

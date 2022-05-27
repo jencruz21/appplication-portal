@@ -6,81 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MGHS</title>
     <link rel="icon" href="logo.png" />
-    <style type="text/css">
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #FFF;
-        font-family: "Poppins", sans-serif;
-      }
-      table {
-        border-spacing: 0;
-      }
-      td {
-        padding: 0;
-      }
-      img {
-        border: 0;
-      }
-
-      .wrapper {
-        width: 100%;
-        table-layout: fixed;
-        background-color: #a4a4a4;
-        padding-bottom: 40px;
-      }
-
-      .webkit {
-        max-width: 600px;
-        border-color: #f4f6ff;
-        border-radius: 25px 25px 25px 25px;
-        background-color: #f4f6ff;
-      }
-
-      .outer {
-        margin: 0 auto;
-        width: 100%;
-        max-width: 600px;
-        border-spacing: 0;
-        color: #ffffff;
-      }
-
-      .welcome {
-        font-weight: 700;
-        font-size: 42px;
-        line-height: 66.57px;
-      }
-
-      button {
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 33px;
-        letter-spacing: 1.5%;
-      }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap">
   </head>
 
-  <body>
-    <center class="wrapper">
-      <div class="webkit">
-        <table class="outer" align="center">
+  <body style="margin: 0; padding: 0; background-color: #FFF; font-family: Poppins, sans-serif;">
+    <center style="width: 100%; table-layout: fixed; background-color: #a4a4a4; padding-bottom: 40px;">
+      <div style="max-width: 600px; border-color: #f4f6ff; border-radius: 25px 25px 25px 25px; background-color: #f4f6ff;">
+        <table  style="margin: 0 auto; width: 100%; max-width: 600px; border-spacing: 0; color: #ffffff;" align="center">
           <tr>
-            <td>
+            <td style="padding: 0;">
               <table width="100%" style="border-spacing: 0">
                 <tr>
                   <td
                     style="
+                      padding: 0;
                       background-color: #65c122;
                       text-align: center;
                       height: 570px;
                       border-radius: 25px;
                     "
                   >
-                    <img src="Envelope.png" style="padding-top: 50px" />
-                    <h1 class="welcome" id="name">
-                      Hi <span id="name"></span>,<br />WELCOME to MGHS!
+                    <img src="Envelope.png" style="padding-top: 50px; border: 0" />
+                    <h1  style="font-weight: 700; font-size: 42px; line-height: 66.57px;" id="name">
+                      Hi %s,<br />WELCOME to MGHS!
                     </h1>
                   </td>
                 </tr>
@@ -89,7 +37,7 @@
           </tr>
 
           <tr>
-            <td>
+            <td style="padding: 0;">
               <table
                 width="100%"
                 style="
@@ -101,7 +49,7 @@
                 "
               >
                 <tr>
-                  <td>
+                  <td style="padding: 0;">
                     <h3
                       style="
                         font-weight: 600;
@@ -140,9 +88,9 @@
                       Pre-Screening Form. We are pleased to inform you that you
                       are <b>QUALIFIED</b> for our internship program.
                       <br>
-                      Zoom Meeting <br>
-                      Link: <span id="link"></span><br>
-                      Password: <span id="pwd"></span><br>
+                      Zoom Meeting on %s<br>
+                      Link: %s <br>
+                      Password: %s <br> 
                     </p>
                     <p
                       style="
@@ -158,6 +106,10 @@
                     </p>
                     <button
                       style="
+                        font-weight: 600;
+                        font-size: 20px;
+                        line-height: 33px;
+                        letter-spacing: 1.5%;
                         width: 258px;
                         height: 66px;
                         background-color: #f95151;
@@ -176,11 +128,12 @@
           </tr>
 
           <tr>
-            <td>
+            <td style="padding: 0;">
               <table width="100%" style="border-spacing: 0">
                 <tr>
                   <td
                     style="
+                      padding: 0;
                       background-color: #65c122;
                       text-align: center;
                       height: 91px;

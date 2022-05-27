@@ -18,8 +18,7 @@
                         $course,
                         $gdrive_link,
                         $skills,
-                        $created_at
-                        ) 
+                        $created_at) 
     {
         $stmt = mysqli_stmt_init($conn);
         $query = "INSERT INTO application_portal (
@@ -35,7 +34,7 @@
             created_at) 
             VALUES (?,?,?,?,?,?,?,?,?,?)";
         $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, "sssssssss", 
+        mysqli_stmt_bind_param($stmt, "ssssssssss", 
             $name, 
             $status, 
             $email, 
@@ -45,7 +44,7 @@
             $course, 
             $gdrive_link, 
             $skills,
-            $created_at);
+            $date);
         mysqli_stmt_execute($stmt);
         mysqli_close($conn);
     }
