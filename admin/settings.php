@@ -1,10 +1,14 @@
 <?php 
     session_start();
 
-    if (isset($_SESSION["username"])) {
-
-    } else {
+    if (!isset($_SESSION["username"])) {
         header("Location: login.php");
+        die();
+    }
+
+    if ($_SESSION["role"] != "admin") {
+        header("Location: index.php");
+        die();
     }
 ?>
 

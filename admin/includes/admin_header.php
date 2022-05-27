@@ -20,7 +20,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="settings.php">Settings</a></li>
           </ul>
         </div>
         <?php } else { ?>
