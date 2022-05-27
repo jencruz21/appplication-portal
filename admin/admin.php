@@ -25,7 +25,7 @@
             <button class="btn btn-primary w-100">Update</button>
         </div>
         <div class="col align-items-center justify-content-center">
-            <button class="btn btn-danger w-100">Delete</button>
+            <button class="btn btn-danger w-100">Wait Listed</button>
         </div>
     </div>
 </div>
