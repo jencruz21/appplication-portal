@@ -38,33 +38,33 @@
             ?>
             <tr>
                     <th>
-                        <a href="applicant.php?id=<?php echo $row["id"]; ?>" style="text-decoration: none; color: black">
+                        <a href="admin.php?id=<?php echo $row["id"]; ?>" class="w-auto" style="text-decoration: none; color: black">
                             <?php echo $row["id"]; ?>
                         </a>
                     </th>
                     <td>
-                        <a href="applicant.php?id=<?php echo $row["id"]; ?>" style="text-decoration: none; color: black">
+                        <a href="admin.php?id=<?php echo $row["id"]; ?>" class="w-auto" style="text-decoration: none; color: black">
                             <?php echo $row["username"]; ?>
                         </a>
                     </td>
                     <td>
-                        <a href="applicant.php?id=<?php echo $row["id"]; ?>" style="text-decoration: none; color: black">
+                        <a href="admin.php?id=<?php echo $row["id"]; ?>" class="w-auto" style="text-decoration: none; color: black">
                             <?php echo $row["role"]; ?>
                         </a>
                     </td>
                     <td>
-                        <a href="applicant.php?id=<?php echo $row["id"]; ?>" style="text-decoration: none; color: black">
+                        <a href="admin.php?id=<?php echo $row["id"]; ?>" class="w-auto" style="text-decoration: none; color: black">
                             <?php echo $row["name"]; ?>
                         </a>
                     </td>
 
                     <td>
-                        <a href="applicant.php?id=<?php echo $row["id"]; ?>" style="text-decoration: none; color: black">
+                        <a href="admin.php?id=<?php echo $row["id"]; ?>" class="w-auto" style="text-decoration: none; color: black">
                             <?php echo $row["email"]; ?>
                         </a>
                     </td>
                     <td>
-                        <a href="applicant.php?id=<?php echo $row["id"]; ?>" style="text-decoration: none; color: black">
+                        <a href="admin.php?id=<?php echo $row["id"]; ?>" class="w-auto" style="text-decoration: none; color: black">
                             <?php echo $row["created_at"]; ?>
                         </a>
                     </td>
