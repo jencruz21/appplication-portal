@@ -28,14 +28,14 @@
         </a>
     </div>
     <div class="row">
-        <div class="col align-items-center justify-content-center">
-            <button class="btn btn-primary w-auto">Update</button>
+        <div class="col-lg-4 align-items-center justify-content-center">
+            <button class="btn btn-primary w-100">Update</button>
         </div>
-        <div class="col align-items-center justify-content-center">
-            <button class="btn btn-success w-auto">Probation</button>
+        <div class="col-lg-4 align-items-center justify-content-center">
+            <button class="btn btn-success w-100">Probation</button>
         </div>
-        <div class="col align-items-center justify-content-center">
-            <button class="btn btn-danger w-auto">Delete</button>
+        <div class="col-lg-4 align-items-center justify-content-center">
+            <button class="btn btn-danger w-100">Delete</button>
         </div>
     </div>
 </div>
