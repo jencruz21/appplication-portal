@@ -20,9 +20,9 @@ if (isset($_POST["submit"])) {
     $name = sanitizeData($conn, $_POST["name"]);
     $email = sanitizeData($conn, $_POST["email_address"]);
     $contactNo = sanitizeData($conn, $_POST["contact_number"]);
-    // $school = sanitizeData($conn, $_POST["school"]);
-    // $branch = sanitizeData($conn, $_POST["branch"]);
-    // $course = sanitizeData($conn, $_POST["course"]);
+    $school = sanitizeData($conn, $_POST["school"]);
+    $branch = sanitizeData($conn, $_POST["branch"]);
+    $course = sanitizeData($conn, $_POST["course"]);
     $skills = sanitizeData($conn, $_POST["technical_skills"]);
     $gdrive_link = sanitizeData($conn, $_POST["link_input"]);
 
@@ -43,11 +43,11 @@ if (isset($_POST["submit"])) {
 <div class="container col">
     <form class="p-5 rounded shadow" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="row">
-            <div class="mb-2 col-lg-4">
+            <div class="mb-2 col-lg-6">
                 <label for="name" class="form-label">Name</label>
                 <input class="form-control" name="name" type="text" id="name" placeholder="enter-name" /> <br>
             </div>
-            <div class="mb-2 col-lg-4">
+            <div class="mb-2 col-lg-6">
                 <label for="email_address" class="form-label">Email</label>
                 <input class="form-control" name="email_address" type="email" id="email_address" placeholder="enter-email" /> <br>
             </div>

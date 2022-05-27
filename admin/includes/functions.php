@@ -106,14 +106,14 @@ function deleteApplicant($conn, $id) {
 // admin role
 
 # add admin/moderator
-function saveUser($conn, $name, $email, $username, $password) {
+function saveUser($conn, $name, $email, $username, $password, $role) {
     $date = date("Y/m/d H:i:s");
     $password = hashPassword($password);
-    $query = "INSERT INTO application_portal_admin (name, email, username, password, created_at) VALUES (?,?,?,?,?)";
+    $query = "INSERT INTO application_portal_admin (name, email, username, password, role, created_at) VALUES (?,?,?,?,?,?)";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "sssss", $name, $email, $username, $password, $date);
+    mysqli_stmt_bind_param($stmt, "ssssss", $name, $email, $username, $password, $role, $date);
     mysqli_stmt_execute($stmt);
-    closeAndFree($conn, $result);
+    mysqli_close($conn);
 }
 
 # update moderator/admin
@@ -123,7 +123,7 @@ function editUser($conn, $name, $email, $username, $password, $role) {
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "sssss", $name, $email, $username, $password, $role);
     mysqli_stmt_execute($stmt);
-    closeAndFree($conn, $result);
+    mysqli_close($conn);
 }
 
 # delete admin/moderator
@@ -159,4 +159,3 @@ function getUserById($conn, $id) {
     closeAndFree($conn, $result);
     return $row;
 }
-
