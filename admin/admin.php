@@ -3,6 +3,16 @@
     require "includes/functions.php";
     require "../includes/db.php";
 
+    if (!isset($_SESSION["username"])) {
+        header("Location: login.php");
+        die();
+    }
+
+    if ($_SESSION["role"] != "admin") {
+        header("Location: index.php");
+        die();
+    }
+
     $id = htmlspecialchars($_GET["id"]);
 
     $row = getUserById($conn, $id);
