@@ -38,14 +38,17 @@
         </a>
     </div>
     <div class="row">
-        <div class="col-lg-4 align-items-center justify-content-center">
+        <div class="col-lg-3 align-items-center justify-content-center">
             <button class="btn btn-primary w-100">Update</button>
         </div>
-        <div class="col-lg-4 align-items-center justify-content-center">
+        <div class="col-lg-3 align-items-center justify-content-center">
             <button class="btn btn-success w-100">Probation</button>
         </div>
-        <div class="col-lg-4 align-items-center justify-content-center">
-            <button class="btn btn-danger w-100">Delete</button>
+        <div class="col-lg-3 align-items-center justify-content-center">
+            <button class="btn btn-danger w-100">Waitlisted</button>
+        </div>
+        <div class="col-lg-3 align-items-center justify-content-center">
+            <button class="btn btn-info w-100">Remind applicant</button>
         </div>
     </div>
 </div>
