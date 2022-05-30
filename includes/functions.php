@@ -44,7 +44,7 @@
             $course, 
             $gdrive_link, 
             $skills,
-            $date);
+            $created_at);
         mysqli_stmt_execute($stmt);
         mysqli_close($conn);
     }

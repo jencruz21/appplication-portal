@@ -34,7 +34,7 @@
                 require "../includes/db.php";
                 $query = "SELECT * FROM application_portal_admin";
                 $result = mysqli_query($conn, $query);
-                while($row = mysqli_fetch_assoc($result)) {
+                while($row = mysqli_fetch_assoc($result)) :
             ?>
             <tr>
                     <th>
@@ -70,7 +70,7 @@
                     </td>
             </tr>
             <?php
-                }
+                endwhile;
             ?>
         </tbody>
     </table>
