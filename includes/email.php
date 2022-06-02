@@ -8,7 +8,7 @@ require "vendor/autoload.php";
 
 require_once "includes/config.php";
 
-function sendEmail($email, $name) {
+function sendEmail($email, $name, $subject, $body) {
     $mail = new PHPMailer(true);
 
     // Mail code
@@ -35,11 +35,4 @@ function sendEmail($email, $name) {
     } catch(Exception $e) {
         echo $e->errorMessage();
     }
-}
-
-function buildOrientationTemplate($name, $sched, $zoom_link, $zoom_pwd) {
-    $email_template_string = file_get_contents("index.html");
-    $email_template = sprintf($email_template_string, "../images/accepted/logo.png", "../images/accepted/Envelope.png", $name, $sched, $zoom_link, $zoom_pwd);
-
-    return $email_template;
 }

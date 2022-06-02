@@ -111,7 +111,7 @@ function setToWhiteListed($conn) {
 function deleteApplicant($conn, $id) {
     $query = "DELETE FROM application_portal WHERE id = ?";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_prepare($stmt, "s", $id);
+    mysqli_stmt_bind_param($stmt, "s", $id);
     mysqli_stmt_execute($stmt);
     mysqli_close($conn);
 }
@@ -134,9 +134,9 @@ function saveUser($conn, $name, $email, $username, $password, $role) {
 }
 
 # update moderator/admin
-function editUser($conn, $name, $email, $username, $password, $role) {
+function updateUser($conn, $name, $email, $username, $role) {
     $password = hashPassword($password);
-    $query = "UPDATE application_portal_admin SET name = ?, email = ?, username = ?, password = ?, role = ?";
+    $query = "UPDATE application_portal_admin SET name = ?, email = ?, username = ?, role = ?";
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "sssss", $name, $email, $username, $password, $role);
     mysqli_stmt_execute($stmt);
@@ -147,7 +147,7 @@ function editUser($conn, $name, $email, $username, $password, $role) {
 function deleteUser($conn, $id) {
     $query = "DELETE FROM application_portal_admin WHERE id = ?";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_prepare($stmt, "s", $id);
+    mysqli_stmt_bind_param($stmt, "s", $id);
     mysqli_stmt_execute($stmt);
     mysqli_close($conn);
 }

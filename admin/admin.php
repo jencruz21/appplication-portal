@@ -13,7 +13,7 @@
         die();
     }
 
-    $id = htmlspecialchars($_GET["id"]);
+    $id = $_GET["id"];
 
     $row = getUserById($conn, $id);
     $date = $row["created_at"];
@@ -32,10 +32,14 @@
     </div>
     <div class="row">
         <div class="col align-items-center justify-content-center">
-            <button class="btn btn-primary w-100">Update</button>
+            <a href="updateAdmin.php?id=<?php echo $id;?>" class="btn btn-primary w-100">
+                Update User
+            </a>
         </div>
         <div class="col align-items-center justify-content-center">
-            <button class="btn btn-danger w-100">Wait Listed</button>
+            <a href="deleteAdmin.php?id=<?php echo $id;?>" class="btn btn-danger w-100">
+                Delete User
+            </a>
         </div>
     </div>
 </div>
