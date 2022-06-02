@@ -22,7 +22,6 @@
 
         if (empty($username) || empty($password) || empty($name) || empty($email) || empty($role)) {
             header("location: " . $_SERVER["PHP_SELF"] . "?error=Please fill all the fields");
-            die();
         } else {
             saveUser($conn, $name, $email, $username, $password, $role);
         }
@@ -41,7 +40,7 @@
             <a class="nav-link active" href="addAdmin.php">Add admin</a>
         </li>
     </ul>
-    <form class="p-5 rounded shadow" method="post" action="admins.php">
+    <form class="p-5 rounded shadow" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
         <div class="mb-2">
                 <label for="username" class="form-label">Username</label>
                 <input class="form-control" name="username" type="text" id="username" placeholder="enter-username" /> <br>
