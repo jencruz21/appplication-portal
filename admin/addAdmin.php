@@ -40,7 +40,7 @@
             <a class="nav-link active" href="addAdmin.php">Add admin</a>
         </li>
     </ul>
-    <form class="p-5 rounded shadow" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+    <form class="p-5 rounded shadow" method="post" action="admins.php">
         <div class="mb-2">
                 <label for="username" class="form-label">Username</label>
                 <input class="form-control" name="username" type="text" id="username" placeholder="enter-username" /> <br>
