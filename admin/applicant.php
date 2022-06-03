@@ -41,9 +41,10 @@
         <div class="col-lg-3 align-items-center justify-content-center">
             <button class="btn btn-primary w-100">Update</button>
         </div>
-        <div class="col-lg-3 align-items-center justify-content-center">
+        <form class="col-lg-3 align-items-center justify-content-center" method="POST" action="probation.php">
+            <input type="hidden" name="probation">
             <button class="btn btn-success w-100">Probation</button>
-        </div>
+        </form>
         <div class="col-lg-3 align-items-center justify-content-center">
             <button class="btn btn-danger w-100">Waitlisted</button>
         </div>

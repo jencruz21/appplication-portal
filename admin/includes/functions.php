@@ -176,3 +176,7 @@ function getUserById($conn, $id) {
     closeAndFree($conn, $result);
     return $row;
 }
+
+// require "../../includes/db.php";
+// // name, email, username, password, role
+// saveUser($conn, "James Read", "jamesread@gmail.com", "admin", "123456", "admin");

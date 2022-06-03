@@ -16,8 +16,8 @@
                         $school,
                         $branch,
                         $course,
-                        $gdrive_link,
                         $skills,
+                        $fov,
                         $created_at) 
     {
         $stmt = mysqli_stmt_init($conn);
@@ -29,10 +29,9 @@
             school, 
             branch, 
             course, 
-            gdrive_link, 
             skills, 
             created_at) 
-            VALUES (?,?,?,?,?,?,?,?,?,?)";
+            VALUES (?,?,?,?,?,?,?,?,?)";
         $stmt = mysqli_prepare($conn, $query);
         mysqli_stmt_bind_param($stmt, "ssssssssss", 
             $name, 
@@ -42,8 +41,11 @@
             $school, 
             $branch, 
             $course, 
-            $gdrive_link, 
             $skills,
+            $fov,
+            $resume,
+            $moa,
+            $endorsementLetter,
             $created_at);
         mysqli_stmt_execute($stmt);
         mysqli_close($conn);
