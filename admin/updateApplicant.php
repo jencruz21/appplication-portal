@@ -13,12 +13,12 @@
 
     if (isset($_POST["submit"])) {
 
-        if (empty($username) || empty($password) || empty($name) || empty($email) || empty($role)) {
-            header("location: " . $_SERVER["PHP_SELF"] . "?error=Please fill all the fields");
-        } else {
-            
-            header("location: index.php");
-        }
+        // if (empty($username) || empty($password) || empty($name) || empty($email) || empty($role)) {
+        //     header("location: " . $_SERVER["PHP_SELF"] . "?error=Please fill all the fields");
+        // } else {
+        //     // updateApplicant();
+        //     header("location: index.php");
+        // }
     }
 ?>
 

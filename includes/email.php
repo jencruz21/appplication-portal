@@ -1,11 +1,10 @@
 <?php
-require "C:/xampp/htdocs/application-portal/vendor/autoload.php";
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // require "vendor/autoload.php";
+require "vendor/autoload.php";
 
 require_once "config.php";
 
