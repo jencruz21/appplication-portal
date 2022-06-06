@@ -4,7 +4,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // require "vendor/autoload.php";
-require "vendor/autoload.php";
+require $_SERVER["DOCUMENT_ROOT"] . "/application-portal/vendor/autoload.php";
 
 require_once "config.php";
 
