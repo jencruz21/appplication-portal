@@ -16,7 +16,7 @@ if (isset($_POST["submit"])) {
     $date = $_POST["date"];
     $time = $_POST["time"];
 
-    $subject = "Invite for an Interview";
+    $subject = "Follow-Up on Requirements";
 
     $name = explode(" ", $name);
 
