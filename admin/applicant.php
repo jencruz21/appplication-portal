@@ -13,19 +13,33 @@
         die();
     }
 
-    $id = htmlspecialchars($_GET["id"]);
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
 
-    $row = getApplicantById($conn, $id);
-    $date = $row["created_at"];
-    $dt = new DateTime($date);
+        $row = getApplicantById($conn, $id);
+        $date = $row["created_at"];
+        $dt = new DateTime($date);
+    }
 ?>
 
 <?php require "includes/admin_header.php"; ?>
 
 <div class="container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="applicant.php?id=<?php echo $row["id"];?>">Applicant Details</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="emailApplicant.php?id=<?php echo $row["id"];?>">Email Applicant</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="updateApplicant.php?id=<?php echo $row["id"];?>">Update Applicant</a>
+        </li>
+    </ul>
     <div class="rounded shadow p-3 mb-3">
         <h2 class="text-left mb-2"><?php echo $row["name"]; ?></h2>
         <i>Status:</i><h4 class="text-left mb-2"><?php echo $row["status"]; ?></h4>
+        <i>Field of work:</i><h4 class="text-left mb-2"><?php echo $row["field_of_work"]; ?></h4>
         <i>School:</i><h4 class="text-left mb-2"><?php echo $row["school"]; ?></h4>
         <i>Branch:</i><h4 class="text-left mb-2"><?php echo $row["branch"]; ?></h4>
         <i>Course:</i><h4 class="text-left mb-2"><?php echo $row["course"]; ?></h4>
@@ -33,24 +47,17 @@
         <i>Email:</i><h4 class="text-left mb-2"><?php echo $row["email"]; ?></h4>
         <i>Applied since:</i><h4 class="text-left mb-2"><?php echo date_format($dt, "Y/m/d"); ?></h4>
         <i>Resume:</i>
-        <a href="<?php echo $row["gdrive_link"];?>">
-            <h4 class="text-left mb-2"><?php echo $row["gdrive_link"]; ?></h4>
+        <a href="includes/resume.php?id=<?php echo $row["id"]; ?>">
+            <h4 class="text-left mb-2"><?php echo $row["resume"]; ?></h4>
         </a>
-    </div>
-    <div class="row">
-        <div class="col-lg-3 align-items-center justify-content-center">
-            <button class="btn btn-primary w-100">Update</button>
-        </div>
-        <form class="col-lg-3 align-items-center justify-content-center" method="POST" action="probation.php">
-            <input type="hidden" name="probation">
-            <button class="btn btn-success w-100">Probation</button>
-        </form>
-        <div class="col-lg-3 align-items-center justify-content-center">
-            <button class="btn btn-danger w-100">Waitlisted</button>
-        </div>
-        <div class="col-lg-3 align-items-center justify-content-center">
-            <button class="btn btn-info w-100">Remind applicant</button>
-        </div>
+        <i>MOA:</i>
+        <a href="includes/moa.php?id=<?php echo $row["id"]; ?>">
+            <h4 class="text-left mb-2"><?php echo $row["moa"]; ?></h4>
+        </a>
+        <i>Endorsement Letter:</i>
+        <a href="includes/endorsementLetter.php?id=<?php echo $row["id"]; ?>">
+            <h4 class="text-left mb-2"><?php echo $row["endorsement_letter"]; ?></h4>
+        </a>
     </div>
 </div>
 

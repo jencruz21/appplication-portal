@@ -1,6 +1,6 @@
 <?php
 
-define("IMG_DIR", "images/accepted");
+define("IMG_DIR", "images");
 define("EMAIL_UN", "jenncruz2134@gmail.com");
 define("EMAIL_PWD", "lnrpkagswwcnjfos");
 

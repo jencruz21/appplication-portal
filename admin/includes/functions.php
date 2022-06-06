@@ -89,20 +89,88 @@ function getApplicantById($conn, $id) {
     return $row;
 }
 
+function saveFormData(
+                        $conn,
+                        $name,
+                        $status,
+                        $email,
+                        $contactNo,
+                        $school,
+                        $branch,
+                        $course,
+                        $skills,
+                        $fow,
+                        $resume,
+                        $moa,
+                        $endorsementLetter) 
+    {
+        $stmt = mysqli_stmt_init($conn);
+        $query = "INSERT INTO application_portal (
+            name, 
+            status, 
+            email, 
+            contact_no, 
+            school, 
+            branch, 
+            course, 
+            skills,
+            field_of_work,
+            resume,
+            moa,
+            endorsement_letter) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "ssssssssssss", 
+            $name, 
+            $status, 
+            $email, 
+            $contactNo, 
+            $school, 
+            $branch, 
+            $course, 
+            $skills,
+            $fow,
+            $resume,
+            $moa,
+            $endorsementLetter);
+        mysqli_stmt_execute($stmt);
+        mysqli_close($conn);
+    }
+
 # update status applicant
 
 // probation
-function setToProbation($conn) {
-    $query = "UPDATE application_portal SET status = 'probation'";
+function setToProbation($conn, $id) {
+    $query = "UPDATE application_portal SET status = 'Probation' WHERE id = ?";
     $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $id);
     mysqli_stmt_execute($stmt);
     mysqli_close($conn);
 }
 
 // white listed
-function setToWhiteListed($conn) {
-    $query = "UPDATE application_portal SET status = 'white_listed'";
+function setToWaitListed($conn, $id) {
+    $query = "UPDATE application_portal SET status = 'Waitlisted' WHERE id = ?";
     $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_close($conn);
+}
+
+//withdrawn
+function setToWithdrawn($conn, $id) {
+    $query = "UPDATE application_portal SET status = 'Withdrawn' WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_close($conn);
+}
+
+// orientation
+function setToOrientation($conn, $id) {
+    $query = "UPDATE application_portal SET status = 'Orientation' WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $id);
     mysqli_stmt_execute($stmt);
     mysqli_close($conn);
 }
@@ -116,9 +184,48 @@ function deleteApplicant($conn, $id) {
     mysqli_close($conn);
 }
 
-# accept applicant (delete applicant)
+// get the associated files from the applicant
 
-# reject applicant (delete applicant)
+// resume
+function getResumeById($conn, $id) {
+    $query = "SELECT resume FROM application_portal WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+    closeAndFree($conn, $result);
+    return $row;
+}
+
+// moa
+function getMoaById($conn, $id) {
+    $query = "SELECT moa FROM application_portal WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+    return $row;
+}
+
+// endorsement letter
+function getEndorsementLetterById($conn, $id) {
+    $query = "SELECT endorsement_letter FROM application_portal WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+    return $row;
+}
+
+// storing scheduled meeting
+
+function saveSchedule($conn, $schedule, $id) {
+
+}
 
 // admin role
 

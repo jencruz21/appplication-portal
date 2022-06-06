@@ -1,12 +1,13 @@
 <?php
+require "C:/xampp/htdocs/application-portal/vendor/autoload.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require "vendor/autoload.php";
+// require "vendor/autoload.php";
 
-require_once "includes/config.php";
+require_once "config.php";
 
 function sendEmail($email, $name, $subject, $body) {
     $mail = new PHPMailer(true);
@@ -26,10 +27,10 @@ function sendEmail($email, $name, $subject, $body) {
         $mail->setFrom(EMAIL_UN);
         $mail->addAddress($email, $name);
 
-        $mail->Subject = 'Invitation for Orientation';
+        $mail->Subject = $subject;
         $mail->isHTML(true);
-        $mail->msgHTML(file_get_contents('templates/html-template/index.html'), IMG_DIR);
-        // $mail->Body = buildOrientationTemplate($name, $sched, $zoom_link, $zoom_pwd);
+        // $mail->msgHTML(file_get_contents('templates/html-template/Pre-Screening Form.html'), IMG_DIR);
+        $mail->Body = $body;
         $mail->send();
         
     } catch(Exception $e) {
