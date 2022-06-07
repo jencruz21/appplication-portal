@@ -9,10 +9,6 @@ if (!isset($_SESSION["username"])) {
     die();
 }
 
-if ($_SESSION["role"] != "admin") {
-    header("Location: index.php");
-    die();
-}
 
 $id = sanitizeInputs($conn, $_GET["id"]);
 

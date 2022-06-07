@@ -89,7 +89,7 @@ function getApplicantById($conn, $id) {
     return $row;
 }
 
-function saveFormData(
+function updateApplicant(
                         $conn,
                         $name,
                         $status,

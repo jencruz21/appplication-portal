@@ -8,11 +8,6 @@
         die();
     }
 
-    if ($_SESSION["role"] != "admin") {
-        header("Location: index.php");
-        die();
-    }
-
     if (isset($_GET["id"])) {
         $id = $_GET["id"];
 
