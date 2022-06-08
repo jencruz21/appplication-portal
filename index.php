@@ -49,41 +49,43 @@ if (isset($_POST["submit"])) {
         die();
     }
 
-    if (mkdir($destination)) {
-        $resumeDestination = "uploads/" .$email . "/" . $resumeName;
-        $moaDestination = "uploads/" .$email . "/" . $moaName;
-        $endorsementLetterDestination = "uploads/" . $email . "/" . $endorsementLetterName;
+    if ($resumeSize == 0 && $moaSize == 0 && $endorsementLetterSize == 0) {
+        $date = date("Y/m/d");
+        $details = array();
+        $details["name"] = $name;
+        $details["course"] = $course;
 
-        if (move_uploaded_file($tmpResumeName, $resumeDestination) && move_uploaded_file($tmpMoaName, $moaDestination) && move_uploaded_file($tmpEndorsementLetterName, $endorsementLetterDestination)) {
-            $date = date("Y/m/d");
-            $details = array();
-            $details["name"] = $name;
-            $details["course"] = $course;
+        $body = file_get_contents("./templates/html-template/Pre-Screening Form.html");
 
-            $body = file_get_contents("./templates/html-template/Pre-Screening Form.html");
+        foreach ($details as $key => $value) {
+            $body = str_replace("{{ " . $key . " }}", $value, $body);
+        }
 
-            foreach ($details as $key => $value) {
-                $body = str_replace("{{ " . $key . " }}", $value, $body);
+        saveFormData($conn, $name, "pre-screening", $email, $contactNo, $school, $branch, $course, $skills, $fow, "", "", "", $date);
+        sendEmail($email, $name, "Pre-Screening Form Link", $body);
+        header("location: success.php");
+    } else {
+        if (mkdir($destination)) {
+            $resumeDestination = "uploads/" .$email . "/" . $resumeName;
+            $moaDestination = "uploads/" .$email . "/" . $moaName;
+            $endorsementLetterDestination = "uploads/" . $email . "/" . $endorsementLetterName;
+
+            if (move_uploaded_file($tmpResumeName, $resumeDestination) && move_uploaded_file($tmpMoaName, $moaDestination) && move_uploaded_file($tmpEndorsementLetterName, $endorsementLetterDestination)) {
+                $date = date("Y/m/d");
+                $details = array();
+                $details["name"] = $name;
+                $details["course"] = $course;
+
+                $body = file_get_contents("./templates/html-template/Pre-Screening Form.html");
+
+                foreach ($details as $key => $value) {
+                    $body = str_replace("{{ " . $key . " }}", $value, $body);
+                }
+
+                saveFormData($conn, $name, "pre-screening", $email, $contactNo, $school, $branch, $course, $skills, $fow, $resumeDestination, $moaDestination, $endorsementLetterDestination, $date);
+                sendEmail($email, $name, "Pre-Screening Form Link", $body);
+                   header("location: success.php");
             }
-
-            saveFormData($conn, $name, "pre-screening", $email, $contactNo, $school, $branch, $course, $skills, $fow, $resumeDestination, $moaDestination, $endorsementLetterDestination, $date);
-            sendEmail($email, $name, "Pre-Screening Form Link", $body);
-            header("location: success.php");
-        } else {
-            $date = date("Y/m/d");
-            $details = array();
-            $details["name"] = $name;
-            $details["course"] = $course;
-
-            $body = file_get_contents("./templates/html-template/Pre-Screening Form.html");
-
-            foreach ($details as $key => $value) {
-                $body = str_replace("{{ " . $key . " }}", $value, $body);
-            }
-
-            saveFormData($conn, $name, "pre-screening", $email, $contactNo, $school, $branch, $course, $skills, $fow, "", "", "", $date);
-            sendEmail($email, $name, "Pre-Screening Form Link", $body);
-            header("location: success.php");
         }
     }
 }
