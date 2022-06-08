@@ -4,13 +4,11 @@ require "includes/db.php";
 require "includes/email.php";
 require "includes/functions.php";
 
+if(!isset($_GET["pass"]) && empty($_GET["pass"])) {
+    die();
+}
+
 if (isset($_POST["submit"])) {
-    // need ko ng query sa database ✅
-    // need ko ng dummy account to test the automated email ✅
-    // lastly validation and sanitization ✅
-    // rearrange ang code ✅
-    // pag gagawing to page form submission isstore ko nlng ung data ng form1 sa session tas issubmit ko nlng yun sa db pag ok na nsa form 2 na sila
-    // ilagay ang name sa template
 
     $name = sanitizeData($conn, $_POST["name"]);
     $email = sanitizeData($conn, $_POST["email_address"]);
@@ -20,6 +18,8 @@ if (isset($_POST["submit"])) {
     $course = sanitizeData($conn, $_POST["course"]);
     $skills = sanitizeData($conn, $_POST["technical_skills"]);
     $fow = sanitizeData($conn, $_POST["field_of_work"]);
+
+
 
     // FIle functions
     // Resume
@@ -96,6 +96,7 @@ if (isset($_POST["submit"])) {
 <h2 class="text-center mb-3">Application Form</h2>
 <div class="container col">
     <form class="p-5 rounded shadow" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="spam" />
         <div class="row">
             <div class="mb-2 col-lg-4">
                 <label for="name" class="form-label">Name</label>
