@@ -4,9 +4,9 @@ require "includes/db.php";
 require "includes/email.php";
 require "includes/functions.php";
 
-if(!isset($_GET["pass"]) && empty($_GET["pass"])) {
-    die();
-}
+// if(!isset($_GET["pass"]) && empty($_GET["pass"])) {
+//     die();
+// }
 
 if (isset($_POST["submit"])) {
 
@@ -18,8 +18,6 @@ if (isset($_POST["submit"])) {
     $course = sanitizeData($conn, $_POST["course"]);
     $skills = sanitizeData($conn, $_POST["technical_skills"]);
     $fow = sanitizeData($conn, $_POST["field_of_work"]);
-
-
 
     // FIle functions
     // Resume
