@@ -44,7 +44,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="time">Time</label>
-                    <input class="form-control" type="time" name="time" id="time" value="00:00:00" step="1">
+                    <input class="form-control" type="time" name="time" id="time" step="1">
                 </div>
                 <button class="btn btn-success w-100" name="submit">Probation</button>
             </form>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="time">Time</label>
-                    <input class="form-control" type="time" name="time" id="time" value="00:00:00" step="1">
+                    <input class="form-control" type="time" name="time" id="time" step="1">
                 </div>
                 <input type="hidden" name="id" value="<?php echo $row["id"];?>">
                 <input type="hidden" name="name" value="<?php echo $row["name"];?>">

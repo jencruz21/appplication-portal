@@ -35,3 +35,7 @@ function sendEmail($email, $name, $subject, $body) {
         echo $e->errorMessage();
     }
 }
+
+function sendAttachments($email, $name, $subject, $body, ...$attachments) {
+    
+}
