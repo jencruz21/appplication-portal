@@ -87,7 +87,7 @@
                       "
                     >
 
-                    Virtual Internship Program Pre-Screening Form [{{ course }}] <br><br>
+                    Virtual Internship Program Pre-Screening Form {{ course }} <br><br>
 
                       <br>Dear Internship Applicant,<br>
 
@@ -95,7 +95,7 @@
 
                       <br>We appreciate the overwhelming number of applicants who expressed their interest to become part of our company as interns.<br>
 
-                      <br>May we request a few minutes of your time to answer our Pre-Screening Form
+                      <br>May we request a few minutes of your time to answer our <a id="form">Pre-Screening Form</a>
                       to process your application. If you've responded already to the form, kindly disregard this instruction.<br>
                       <br>Attached herein is our <a href="https://drive.google.com/file/d/1Gs8DOxRT8uXeBgtE363AF0fTsGm-ocqS/view">Virtual Internship Program</a> and 
                       <a href="https://drive.google.com/file/d/1cNJSDWfnjf8pLSX96_rBtXeRMdKFtsPy/view">Business Profile</a> to know more about the internship program and our company.
@@ -132,24 +132,7 @@
                     >
                       Goodluck and we wish to be working with you soon!
                     </p>
-                    <button
-                      style="
-                        font-weight: 600;
-                        font-size: 20px;
-                        line-height: 33px;
-                        letter-spacing: 1.5%;
-                        width: 258px;
-                        height: 66px;
-                        background-color: #f95151;
-                        border-color: transparent;
-                        border-radius: 33px;
-                        color: #ffffff;
-                        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                      "
-                      id="button"
-                    >
-                      Get started
-                    </button>
+                    
                   </td>
                 </tr>
               </table>
@@ -198,10 +181,10 @@
     </center>
 
     <script>
-      const button = document.getElementById("button");
+      const form = document.getElementById("form");
 
-      button.addEventListener("click", function() {
-        window.location.href = "{{ link }}";
+      form.addEventListener("click", function() {
+        window.location.href = "https://forms.gle/4DbQWSz4SL5LMj2D9";
       });
     </script>
   </body>
