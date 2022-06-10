@@ -46,6 +46,11 @@ if (isset($_POST["submit"])) {
             $body = str_replace("{{ " . $key . " }}", $value, $body);
         }
 
+        // virtual internship program
+        // https://drive.google.com/file/d/1Gs8DOxRT8uXeBgtE363AF0fTsGm-ocqS/view
+
+        // business profile
+        // https://drive.google.com/file/d/1cNJSDWfnjf8pLSX96_rBtXeRMdKFtsPy/view
         saveFormData($conn, $name, "Pre-screening", $email, $contactNo, $school, $branch, $course, $skills, $fow, $resume, $date);
         sendEmail($email, $name, "Pre-Screening Form Link", $body);
         header("location: success.php");

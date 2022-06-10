@@ -1,7 +1,7 @@
 <?php
 
-define("EMAIL_UN", "jenncruz2134@gmail.com");
-define("EMAIL_PWD", "lnrpkagswwcnjfos");
+define("EMAIL_UN", "mghs.application.portal@gmail.com");
+define("EMAIL_PWD", "udtgypfyyywqggqb");
 define("SECRET_STRING", "1991652782");
 
 // DB Credentials
