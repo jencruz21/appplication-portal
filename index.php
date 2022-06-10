@@ -1,5 +1,5 @@
 <?php 
-error_reporting(0);
+//error_reporting(0);
 require "includes/db.php";
 require "includes/email.php";
 require "includes/functions.php";

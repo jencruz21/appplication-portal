@@ -18,7 +18,7 @@ function sendEmail($email, $name, $subject, $body) {
         $mail->Port = 587;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = "tls";
-        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
         $mail->Username = EMAIL_UN;
         $mail->Password = EMAIL_PWD;
@@ -28,7 +28,6 @@ function sendEmail($email, $name, $subject, $body) {
 
         $mail->Subject = $subject;
         $mail->isHTML(true);
-        // $mail->msgHTML(file_get_contents('templates/html-template/Pre-Screening Form.html'), IMG_DIR);
         $mail->Body = $body;
         $mail->send();
         
