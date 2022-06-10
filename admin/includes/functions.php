@@ -89,8 +89,23 @@ function getApplicantById($conn, $id) {
     return $row;
 }
 
-function updateApplicant(
-                        $conn,
+function isFieldsEmpty($name, $email, $contact_no, $school, $branch, $course, $skills, $fow, $resume) {
+        if (empty($name) || 
+        empty($email) || 
+        empty($contact_no) || 
+        empty($school) || 
+        empty($branch) || 
+        empty($course) || 
+        empty($skills) ||
+        empty($fow) ||
+        empty($resume)) {
+            return true;
+        } else {
+            return false;
+        }   
+}
+
+function updateApplicant($conn,
                         $name,
                         $status,
                         $email,
@@ -101,26 +116,12 @@ function updateApplicant(
                         $skills,
                         $fow,
                         $resume,
-                        $moa,
-                        $endorsementLetter) 
+                        $id) 
     {
         $stmt = mysqli_stmt_init($conn);
-        $query = "INSERT INTO application_portal (
-            name, 
-            status, 
-            email, 
-            contact_no, 
-            school, 
-            branch, 
-            course, 
-            skills,
-            field_of_work,
-            resume,
-            moa,
-            endorsement_letter) 
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        $query = "UPDATE application_portal SET name = ?, status = ?, email = ?, contact_no = ?, school = ?, branch = ?, course = ?, skills = ?, field_of_work = ?, resume = ? WHERE id = ?";
         $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, "ssssssssssss", 
+        mysqli_stmt_bind_param($stmt, "sssssssssss", 
             $name, 
             $status, 
             $email, 
@@ -131,8 +132,7 @@ function updateApplicant(
             $skills,
             $fow,
             $resume,
-            $moa,
-            $endorsementLetter);
+            $id);
         mysqli_stmt_execute($stmt);
         mysqli_close($conn);
     }
@@ -140,10 +140,10 @@ function updateApplicant(
 # update status applicant
 
 // probation
-function setToProbation($conn, $id) {
-    $query = "UPDATE application_portal SET status = 'Probation' WHERE id = ?";
+function setToProbation($conn, $id, $dateTimeString) {
+    $query = "UPDATE application_portal SET status = 'Probation', meeting_sched = ? WHERE id = ?";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_bind_param($stmt, "ss", $dateTimeString, $id);
     mysqli_stmt_execute($stmt);
     mysqli_close($conn);
 }
@@ -167,10 +167,10 @@ function setToWithdrawn($conn, $id) {
 }
 
 // orientation
-function setToOrientation($conn, $id) {
-    $query = "UPDATE application_portal SET status = 'Orientation' WHERE id = ?";
+function setToOrientation($conn, $id, $dateTimeString) {
+    $query = "UPDATE application_portal SET status = 'Orientation', meeting_sched = ? WHERE id = ?";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_bind_param($stmt, "ss", $dateTimeString, $id);
     mysqli_stmt_execute($stmt);
     mysqli_close($conn);
 }
@@ -182,43 +182,6 @@ function deleteApplicant($conn, $id) {
     mysqli_stmt_bind_param($stmt, "s", $id);
     mysqli_stmt_execute($stmt);
     mysqli_close($conn);
-}
-
-// get the associated files from the applicant
-
-// resume
-function getResumeById($conn, $id) {
-    $query = "SELECT resume FROM application_portal WHERE id = ?";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "s", $id);
-    mysqli_stmt_execute($stmt);
-
-    $result = mysqli_stmt_get_result($stmt);
-    $row = mysqli_fetch_assoc($result);
-    closeAndFree($conn, $result);
-    return $row;
-}
-
-// moa
-function getMoaById($conn, $id) {
-    $query = "SELECT moa FROM application_portal WHERE id = ?";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "s", $id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    $row = mysqli_fetch_assoc($result);
-    return $row;
-}
-
-// endorsement letter
-function getEndorsementLetterById($conn, $id) {
-    $query = "SELECT endorsement_letter FROM application_portal WHERE id = ?";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "s", $id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    $row = mysqli_fetch_assoc($result);
-    return $row;
 }
 
 // storing scheduled meeting

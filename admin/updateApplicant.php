@@ -12,13 +12,25 @@
     $row = getApplicantById($conn, $id);
 
     if (isset($_POST["submit"])) {
+        $name = $_POST["name"];
+        $email = $_POST["email_address"];
+        $status = $_POST["status"];
+        $fow = $_POST["field_of_work"];
+        $contact_no = $_POST["contact_number"];
+        $school = $_POST["school"];
+        $branch = $_POST["branch"];
+        $course = $_POST["course"];
+        $skills = $_POST["skills"];
+        $resume = $_POST["gdrive_link"];
+        $id = $row["id"];
 
-        // if (empty($username) || empty($password) || empty($name) || empty($email) || empty($role)) {
-        //     header("location: " . $_SERVER["PHP_SELF"] . "?error=Please fill all the fields");
-        // } else {
-        //     // updateApplicant();
-        //     header("location: index.php");
-        // }
+        if (isFieldsEmpty($name, $email, $status, $contact_no, $school, $branch, $course, $skills, $fow, $resume)) {
+            header("location: " . $_SERVER['PHP_SELF'] . "?error=Please fill all the fields!");
+            exit();
+        } else {
+            updateApplicant($name, $ema);
+            header("location: applicant.php?id=" . $row["id"]);
+        }
     }
 ?>
 
@@ -84,7 +96,7 @@
                 <input class="form-control" name="branch" type="text" placeholder="enter-branch" value="<?php echo $row["branch"];?>"/> <br>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-2">
             <div class="mb-2 col-lg-4">
                 <label for="course" class="form-label">Course</label>
                 <input class="form-control" name="course" type="text" placeholder="enter-course" value="<?php echo $row["course"];?>"/> <br>
@@ -94,18 +106,8 @@
                 <input class="form-control" name="technical_skills" type="text" value="<?php echo $row["skills"];?>"/> <br>
             </div>
             <div class="mb-2 col-lg-2">
-                <label for="resume" class="form-label">Resume</label>
-                <input class="form-control" type="file" name="resume">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="mb-2 col-lg-6">
-                <label for="moa" class="form-label">MOA</label>
-                <input class="form-control" type="file" name="moa">
-            </div>
-            <div class="mb-2 col-lg-6">
-                <label for="endorsement_letter" class="form-label">Endorsement Letter</label>
-                <input class="form-control w-100" type="file" name="endorsement_letter">
+                <label for="resume" class="form-label">Link for resume<span style="color: red;"> *needed*</span></label>
+                <input class="form-control" type="text" name="gdrive_link" placeholder="enter-gdrive-link">
             </div>
         </div>
         <input type="submit" class="btn btn-primary" name="submit" value="Update"/>

@@ -10,9 +10,7 @@ CREATE TABLE IF NOT EXISTS sql6497392.application_portal (
 	skills VARCHAR(256) NOT NULL,
 	field_of_work VARCHAR(256) NOT NULL,
 	resume VARCHAR(256) DEFAULT "No resume",
-	moa VARCHAR(256) DEFAULT "No MOA",
-	endorsement_letter VARCHAR(256) DEFAULT "No Endorsement Letter",
-	created_at TIMESTAMP NOT NULL,
+	meeting_sched TIMESTAMP NOT NULL,
 	PRIMARY KEY(id)
 ) ENGINE = INNODB;
 

@@ -3,10 +3,15 @@ error_reporting(0);
 require "includes/db.php";
 require "includes/email.php";
 require "includes/functions.php";
+require_once "includes/config.php";
 
-// if(!isset($_GET["pass"]) && empty($_GET["pass"])) {
-//     die();
-// }
+if(!isset($_GET["pass"]) && empty($_GET["pass"])) {
+    die();
+}
+
+if ($_GET["pass"] != SECRET_STRING) {
+    die();
+}
 
 if (isset($_POST["submit"])) {
 
@@ -18,41 +23,21 @@ if (isset($_POST["submit"])) {
     $course = sanitizeData($conn, $_POST["course"]);
     $skills = sanitizeData($conn, $_POST["technical_skills"]);
     $fow = sanitizeData($conn, $_POST["field_of_work"]);
+    $resume = sanitizeData($conn, $_POST["gdrive_link"]);
 
-    // FIle functions
-    // Resume
-    $resumeName = $_FILES["resume"]["name"];
-    $tmpResumeName = $_FILES["resume"]["tmp_name"];
-    $resumeSize = $_FILES["resume"]["size"];
-
-    // Moa
-    $moaName = $_FILES["moa"]["name"];
-    $tmpMoaName = $_FILES["moa"]["tmp_name"];
-    $moaSize = $_FILES["moa"]["size"];
-
-    // Endorsement Letter
-    $endorsementLetterName = $_FILES["endorsement_letter"]["name"];
-    $tmpEndorsementLetterName = $_FILES["endorsement_letter"]["tmp_name"];
-    $endorsementLetterSize = $_FILES["endorsement_letter"]["size"];
-
-    $destination = "uploads/" . $email;
-
-    $sizeLimit = 50_000_000;
-
-    if (isFieldsEmpty($name, $email, $contactNo, $school, $branch, $course, $skills, $fow) === true) {
+    if (isFieldsEmpty($name, $email, $contactNo, $school, $branch, $course, $skills, $fow, $resume)) {
         header("location: " . $_SERVER['PHP_SELF'] . "?error=Please fill all the fields!");
-        exit();
     } 
 
-    if (($resumeSize > $sizeLimit) || ($moaSize > $sizeLimit) || ($endorsementLetterSize > $sizeLimit)) {
-        header("location: ");
+    if (isset($_POST["spam"]) && !empty($_POST["spam"])) {
         die();
     }
-
-    if ($resumeSize == 0 && $moaSize == 0 && $endorsementLetterSize == 0) {
         $date = date("Y/m/d");
+        $newName = explode(" ", $name);
         $details = array();
-        $details["name"] = $name;
+        $details["name"] = $newName[0];
+        $details["link"] = "https://forms.gle/4DbQWSz4SL5LMj2D9";
+        $details["surname"] = end($newName);
         $details["course"] = $course;
 
         $body = file_get_contents("./templates/html-template/Pre-Screening Form.html");
@@ -61,33 +46,10 @@ if (isset($_POST["submit"])) {
             $body = str_replace("{{ " . $key . " }}", $value, $body);
         }
 
-        saveFormData($conn, $name, "pre-screening", $email, $contactNo, $school, $branch, $course, $skills, $fow, "", "", "", $date);
+        saveFormData($conn, $name, "Pre-screening", $email, $contactNo, $school, $branch, $course, $skills, $fow, $resume, $date);
         sendEmail($email, $name, "Pre-Screening Form Link", $body);
         header("location: success.php");
-    } else {
-        if (mkdir($destination)) {
-            $resumeDestination = "uploads/" .$email . "/" . $resumeName;
-            $moaDestination = "uploads/" .$email . "/" . $moaName;
-            $endorsementLetterDestination = "uploads/" . $email . "/" . $endorsementLetterName;
-
-            if (move_uploaded_file($tmpResumeName, $resumeDestination) && move_uploaded_file($tmpMoaName, $moaDestination) && move_uploaded_file($tmpEndorsementLetterName, $endorsementLetterDestination)) {
-                $date = date("Y/m/d");
-                $details = array();
-                $details["name"] = $name;
-                $details["course"] = $course;
-
-                $body = file_get_contents("./templates/html-template/Pre-Screening Form.html");
-
-                foreach ($details as $key => $value) {
-                    $body = str_replace("{{ " . $key . " }}", $value, $body);
-                }
-
-                saveFormData($conn, $name, "pre-screening", $email, $contactNo, $school, $branch, $course, $skills, $fow, $resumeDestination, $moaDestination, $endorsementLetterDestination, $date);
-                sendEmail($email, $name, "Pre-Screening Form Link", $body);
-                   header("location: success.php");
-            }
-        }
-    }
+    
 }
 
 ?>
@@ -99,6 +61,7 @@ if (isset($_POST["submit"])) {
         <input type="hidden" name="spam" />
         <div class="row">
             <div class="mb-2 col-lg-4">
+                <input type="text" name="spam" style="display: none; visibility: hidden;">
                 <label for="name" class="form-label">Name</label>
                 <input class="form-control" name="name" type="text" id="name" placeholder="enter-name" /> <br>
             </div>
@@ -151,21 +114,11 @@ if (isset($_POST["submit"])) {
             </div>
             <div class="mb-2 col-lg-6">
                 <label for="status" class="form-label">Technical Skills</label>
-                <input class="form-control" name="technical_skills" type="text" /> <br>
+                <input class="form-control" name="technical_skills" type="text" placeholder="enter-skills" /> <br>
             </div>
             <div class="mb-2 col-lg-2">
-                <label for="resume" class="form-label">Resume</label>
-                <input class="form-control" type="file" name="resume">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="mb-2 col-lg-6">
-                <label for="moa" class="form-label">MOA</label>
-                <input class="form-control" type="file" name="moa">
-            </div>
-            <div class="mb-2 col-lg-6">
-                <label for="endorsement_letter" class="form-label">Endorsement Letter</label>
-                <input class="form-control w-100" type="file" name="endorsement_letter">
+                <label for="resume" class="form-label">Link for resume<span style="color: red;"> *needed*</span></label>
+                <input class="form-control" type="text" name="gdrive_link" placeholder="enter-gdrive-link">
             </div>
         </div>
         <input type="submit" class="btn btn-primary" name="submit"/>

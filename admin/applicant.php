@@ -43,16 +43,8 @@
         <i>Email:</i><h4 class="text-left mb-2"><?php echo $row["email"]; ?></h4>
         <i>Applied since:</i><h4 class="text-left mb-2"><?php echo date_format($dt, "Y/m/d"); ?></h4>
         <i>Resume:</i>
-        <a href="includes/resume.php?id=<?php echo $row["id"]; ?>">
-            <h4 class="text-left mb-2"><?php echo $row["resume"]; ?></h4>
-        </a>
-        <i>MOA:</i>
-        <a href="includes/moa.php?id=<?php echo $row["id"]; ?>">
-            <h4 class="text-left mb-2"><?php echo $row["moa"]; ?></h4>
-        </a>
-        <i>Endorsement Letter:</i>
-        <a href="includes/endorsementLetter.php?id=<?php echo $row["id"]; ?>">
-            <h4 class="text-left mb-2"><?php echo $row["endorsement_letter"]; ?></h4>
+        <a href="<?php echo $row["resume"]; ?>">
+            <h4 class="text-left mb-2">Link for the resume</h4>
         </a>
     </div>
 </div>

@@ -19,8 +19,6 @@
                         $skills,
                         $fow,
                         $resume,
-                        $moa,
-                        $endorsementLetter,
                         $created_at) 
     {
         $stmt = mysqli_stmt_init($conn);
@@ -35,12 +33,10 @@
             skills,
             field_of_work,
             resume,
-            moa,
-            endorsement_letter, 
             created_at) 
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, "sssssssssssss", 
+        mysqli_stmt_bind_param($stmt, "sssssssssss", 
             $name, 
             $status, 
             $email, 
@@ -51,14 +47,12 @@
             $skills,
             $fow,
             $resume,
-            $moa,
-            $endorsementLetter,
             $created_at);
         mysqli_stmt_execute($stmt);
         mysqli_close($conn);
     }
 
-    function isFieldsEmpty($name, $email, $contact_no, $school, $branch, $course, $skills, $fow) {
+    function isFieldsEmpty($name, $email, $contact_no, $school, $branch, $course, $skills, $fow, $resume) {
         if (empty($name) || 
         empty($email) || 
         empty($contact_no) || 
@@ -66,7 +60,8 @@
         empty($branch) || 
         empty($course) || 
         empty($skills) ||
-        empty($fow)) {
+        empty($fow) ||
+        empty($resume)) {
             return true;
         } else {
             return false;

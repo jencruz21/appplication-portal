@@ -3,21 +3,20 @@ require "../../includes/db.php";
 require "../../includes/email.php";
 require "functions.php";
 
-// name
-// course
-// date / time
-// link
-
 if (isset($_POST["submit"])) {
+
+    if (empty($_POST["date"]) || empty($_POST["time"])) {
+        header("location: ../applicant.php?id=" . $id . "&error=Please fill all fields");
+    }
+
     $id = $_POST["id"];
     $email = $_POST["email"];
     $name = $_POST["name"];
     $course = $_POST["course"];
     $date = $_POST["date"];
     $time = $_POST["time"];
-
+    $dateTimeString = $date . " " . $time;
     $subject = "Follow-Up on Requirements";
-
     $name = explode(" ", $name);
 
     $details = array();

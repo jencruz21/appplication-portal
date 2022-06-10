@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\Exception;
 // require "vendor/autoload.php";
 require_once "config.php";
 
-include "../../vendor/autoload.php";
+include "vendor/autoload.php";
 
 function sendEmail($email, $name, $subject, $body) {
     $mail = new PHPMailer(true);

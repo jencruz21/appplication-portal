@@ -20,7 +20,7 @@ if (isset($_POST["submit"])) {
     $details = array();
     $details["name"] = $name[0];
 
-    $body = file_get_contents("../../templates/html-template/Wait-Listed Applicants.html");
+    $body = file_get_contents("../../templates/html-template/Waitlisted Applicants.html");
 
     foreach($details as $key => $value) {
         $body = str_replace("{{ " . $key . " }}", $value, $body);
