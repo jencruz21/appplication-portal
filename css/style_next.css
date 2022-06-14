@@ -150,10 +150,10 @@ section .eclipse img{
     opacity: 0; /* mutate this */
 }
 
-.modal:target{
+/* .modal:target{
     visibility: visible;
     opacity: 1;
-}
+} */
 
 .popup{
     background: #fff;

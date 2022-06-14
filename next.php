@@ -125,7 +125,7 @@ if (isset($_POST["submit"])) {
            		    </div>
                     </div>
 
-                    <a class="btn" href="#modalbox">SUBMIT</a>
+                    <p class="btn" style="cursor: pointer" id="modalbtn">SUBMIT</p>
 
                     <?php if (isset($_GET["error"])) :?>
                         <p style="color:red;">*<?php echo $_GET["error"]; ?>*</p>
@@ -136,7 +136,7 @@ if (isset($_POST["submit"])) {
                             <img src="images/chk.png">
                             <h2>SUCCESS</h2>
                             <p>Please check your email for your <br>confirmation link.</p>
-                            <input type="submit" name="submit" class="btn_modal" value="DONE" onclick="location.href='index.php?pass=1991652782'">
+                            <input type="submit" name="submit" class="btn_modal" value="DONE">
                         </div>
                     </div>
 

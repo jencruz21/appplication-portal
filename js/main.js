@@ -20,6 +20,7 @@ inputs.forEach(input => {
 	input.addEventListener("blur", remcl);
 });
 
-// btn.addEventListener("click", function() {
-// 	modal.style.opacity = 1;
-// });
+btn.addEventListener("click", function() {
+	modal.style.opacity = 1;
+	modal.style.visibility = "visible";
+});
