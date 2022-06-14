@@ -51,19 +51,3 @@
         mysqli_stmt_execute($stmt);
         mysqli_close($conn);
     }
-
-    function isFieldsEmpty($name, $email, $contact_no, $school, $branch, $course, $skills, $fow, $resume) {
-        if (empty($name) || 
-        empty($email) || 
-        empty($contact_no) || 
-        empty($school) || 
-        empty($branch) || 
-        empty($course) || 
-        empty($skills) ||
-        empty($fow) ||
-        empty($resume)) {
-            return true;
-        } else {
-            return false;
-        }   
-    }

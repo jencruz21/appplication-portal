@@ -18,7 +18,7 @@ function sendEmail($email, $name, $subject, $body) {
         $mail->Port = 587;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = "tls";
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
         $mail->Username = EMAIL_UN;
         $mail->Password = EMAIL_PWD;

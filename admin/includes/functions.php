@@ -1,5 +1,7 @@
 <?php
 
+require "../../includes/db.php";
+
 function sanitizeInputs($conn, $input) {
     $input = trim($input);
     $input = mysqli_real_escape_string($conn, $input);
@@ -249,4 +251,4 @@ function getUserById($conn, $id) {
 
 // require "../../includes/db.php";
 // // name, email, username, password, role
-// saveUser($conn, "James Read", "jamesread@gmail.com", "admin", "123456", "admin");
+saveUser($conn, "James Read", "jamesread@gmail.com", "admin", "123456", "admin");
