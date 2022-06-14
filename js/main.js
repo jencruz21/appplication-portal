@@ -1,6 +1,6 @@
 const inputs = document.querySelectorAll(".input");
 const btn = document.getElementById("modalbtn");
-const modal = document.getElementById("modal");
+const modal = document.getElementById("modalbox");
 
 function addcl(){
 	let parent = this.parentNode.parentNode;
