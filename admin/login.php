@@ -15,7 +15,10 @@ if(isset($_POST["submit"])) {
             session_start();
             $_SESSION["username"] = $username;
             $_SESSION["role"] = $role;
-            header("location: index.php");
+
+            // fetch data from db where username and role == username and role
+
+            header("location: dashboard.php");
         } else {
             header("Location: login.php");
         }

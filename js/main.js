@@ -24,3 +24,5 @@ btn.addEventListener("click", function() {
 	modal.style.opacity = 1;
 	modal.style.visibility = "visible";
 });
+
+
