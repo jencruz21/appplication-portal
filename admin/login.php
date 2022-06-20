@@ -1,22 +1,20 @@
 <?php
-
+error_reporting(1);
 require "includes/functions.php";
 require "../includes/db.php";
 
-if(isset($_POST["submit"])) {
+if (isset($_POST["submit"])) {
     $username = sanitizeInputs($conn, $_POST["username"]);
     $password = sanitizeInputs($conn, $_POST["password"]);
     $role = strtolower($_POST["role"]);
-    
-    if ($username === "" || $password === "" || $role == "SELECT") {
+
+    if ($username === "" || $password === "" || $role == "role") {
         header("Location: login.php");
     } else {
         if (authorizeUser($conn, $username, $password, $role)) {
             session_start();
             $_SESSION["username"] = $username;
             $_SESSION["role"] = $role;
-
-            // fetch data from db where username and role == username and role
 
             header("location: dashboard.php");
         } else {
@@ -27,30 +25,48 @@ if(isset($_POST["submit"])) {
 
 ?>
 
-<?php require "includes/admin_header.php" ?>
-    <div class="container d-flex flex-column justify-content-center align-items-center">
-    <form class="p-5 rounded shadow col-lg-4 col-sm-12" method="post">
-        <div class="mb-2">
-                <label for="username" class="form-label">Username</label>
-                <input class="form-control" name="username" type="text" id="username" placeholder="enter-username" /> <br>
-            </div>
-            <div class="mb-2">
-                <label for="passowrd" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="enter-password" /> <br>
-            </div>
-        <div class="row">
-            <div class="mb-2 col-lg-6" id="link_section">
-                <label for="status" class="form-label">Role</label>
-                <select name="role" class="form-select" id="link_choices">
-                    <option value="SELECT">SELECT</option>
-                    <option value="moderator">MODERATOR</option>
-                    <option value="admin">ADMIN</option>
-                </select> <br>
-            </div>
-            <div class="col-lg-6 d-flex align-items-center justify-content-center">
-                <input type="submit" class="btn btn-primary w-100 py-2" name="submit" value="Login"/>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, inital-scale=1.0">
+    <title>MGHS- Sign In</title>
+    <link rel="icon" href="img/login/logo-colored.png">
+    <link rel="stylesheet" href="css/login/style.css">
+</head>
+
+<body>
+    <section>
+        <div class="logo">
+            <img src="img/login/logo.png">
+        </div>
+
+        <div class="contentBox">
+            <div class="formBox">
+                <img src="img/login/main.png">
+                <h2>Sign in</h2>
+                <form method="POST" >
+                    <div class="inputBox">
+                        <input type="text" placeholder="Username" name="username">
+                    </div>
+                    <div class="inputBox">
+                        <input type="password" placeholder="Password" name="password">
+                    </div>
+                    <div class="inputBox">
+                        <select placeholder="Role" name="role">
+                            <option value="role">Role</option>
+                            <option value="ADMIN">Administrator</option>
+                            <option value="MODERATOR">Moderator</option>
+                        </select>
+                    </div>
+                    <div class="btn">
+                        <input type="submit" value="SIGN IN" name="submit">
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
-</div>
-<?php require "includes/admin_footer.php" ?>
+    </section>
+</body>
+
+</html>

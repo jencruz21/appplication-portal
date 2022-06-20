@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #F5F5F5;
+    font-family: 'Poppins', sans-serif;
+}
+
+section{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+section .logo{
+    position: relative;
+    width: 25%;
+    height: 100%;
+}
+
+section .logo img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+section .contentBox{
+    margin-top: -20px;	
+    display: flex;
+    width: 75%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+section .contentBox .formBox h2{
+    color: #605E63;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 60px;
+    margin-bottom: 30px;
+}
+
+section .contentBox .formBox .inputBox{
+    margin-bottom: 18px;
+}
+
+section .contentBox .formBox .inputBox input{
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    border: 1px solid #65C122;
+    color: #605E63;
+    background: transparent;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+section .contentBox .formBox .inputBox select {
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    border: 1px solid #65C122;
+    color: #605E63;
+    background: transparent;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+section .contentBox .formBox .btn input{
+    display: inline-block;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 33px;
+    letter-spacing: 0.015rem;
+    border: none;
+    background: #65C122;
+    width: 100%;
+    height: 53px;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 35px;
+}
+
+.contentBox .formBox img{
+    margin-bottom: 50px;
+}
+
+@media screen and (max-width: 1150px){
+    .logo{
+        display: none;
+    }
+    section .contentBox{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    }   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
