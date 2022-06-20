@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>MGHS-Sign Up Form</title>
+	<title>MGHS Application Form</title>
 	<link rel="icon" href="images/logo.png">
 	<link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style_next.css">

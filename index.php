@@ -19,6 +19,10 @@ if (isset($_POST["next"])) {
         $contactNo = $_POST["contact_no"];
         $course = $_POST["course"];
 
+        if (isset($_POST["spam"]) && !empty($_POST["spam"])) {
+            die();
+        }
+
         session_start();
         $_SESSION["name"] = $name;
         $_SESSION["email_address"] = $email;

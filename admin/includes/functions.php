@@ -211,6 +211,24 @@ function fetchPaginatedResult($conn, $tableName, $resultsPerPage, $offset, $colN
     return $paginatedResult;
 }
 
+function fetchPaginatedSearchResult($conn, $tableName, $resultsPerPage, $offset, $colName, $param)
+{
+    // name
+    // status
+    // email
+    // school
+    // branch
+    // field of work
+    $param = "'%" . $param . "%'";
+    $query =
+        "SELECT * FROM " . $tableName .
+        " WHERE CONCAT_WS(' ', name, email, status, school, branch, field_of_work) LIKE " . $param .
+        " ORDER BY " . $colName . " ASC " .
+        " LIMIT " . $resultsPerPage . " OFFSET " . $offset;
+    $paginatedSearchResult = mysqli_query($conn, $query);
+    return $paginatedSearchResult;
+}
+
 // admin role
 
 # add admin/moderator

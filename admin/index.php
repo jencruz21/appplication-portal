@@ -7,6 +7,8 @@
  * 
  */
 
+// url: index.php?page="$param"&sortBy="$param"&query="$param"
+
 require "../includes/db.php";
 require "includes/functions.php";
 require_once "../includes/config.php";
@@ -25,18 +27,29 @@ if (isset($_GET["page"])) {
     $column = "id";
 }
 
+if (!isset($_POST["query"]) && empty($_POST["query"])) {
+    $totalRows = fetchNumRows($conn, "application_portal");
+    $offset = RESULT_PER_PAGE * ($page - 1);
 
-$totalRows = fetchNumRows($conn, "application_portal");
-$offset = RESULT_PER_PAGE * ($page - 1);
+    $numberOfPages = ceil($totalRows / RESULT_PER_PAGE);
+    $result = fetchPaginatedResult($conn, "application_portal", RESULT_PER_PAGE, $offset, $column);
+} else {
+    if (isset($_POST["search"])) {
+        $query = sanitizeInputs($conn, $_POST["query"]);
+        $totalRows = fetchNumRows($conn, "application_portal");
+        $offset = RESULT_PER_PAGE * ($page - 1);
 
-$numberOfPages = ceil($totalRows / RESULT_PER_PAGE);
-$result = fetchPaginatedResult($conn, "application_portal", RESULT_PER_PAGE, $offset, $column);
+        $numberOfPages = ceil($totalRows / RESULT_PER_PAGE);
+        $result = fetchPaginatedSearchResult($conn, "application_portal", RESULT_PER_PAGE, $offset, $column, $query);
+    }
+}
 
 ?>
 
 <?php require "includes/admin_header.php" ?>
 <div class="container mb-2">
     <h1 class="text-center">Applicants</h1>
+    <?php require "search-bar.php"; ?>
 </div>
 
 <div class="table-responsive">
@@ -44,14 +57,14 @@ $result = fetchPaginatedResult($conn, "application_portal", RESULT_PER_PAGE, $of
         <thead class="table-dark">
             <tr>
                 <!-- Lagyan eto ng link for sorting -->
-                <th scope="col-1">#</th>
-                <th scope="col-1">Name</th>
-                <th scope="col-1">Status</th>
-                <th scope="col-1">Email</th>
-                <th scope="col-1">School</th>
-                <th scope="col-1">Branch</th>
-                <th scope="col-1">Field of Work</th>
-                <th scope="col-1">Applied</th>
+                <th scope="col-1"><a style="text-decoration: none; color: white;" href="index.php?page=<?php echo $page; ?>&sortBy=id">#</a></th>
+                <th scope="col-1"><a style="text-decoration: none; color: white;" href="index.php?page=<?php echo $page; ?>&sortBy=name">Name</a></th>
+                <th scope="col-1"><a style="text-decoration: none; color: white;" href="index.php?page=<?php echo $page; ?>&sortBy=status">Status</a></th>
+                <th scope="col-1"><a style="text-decoration: none; color: white;" href="index.php?page=<?php echo $page; ?>&sortBy=email">Email</a></th>
+                <th scope="col-1"><a style="text-decoration: none; color: white;" href="index.php?page=<?php echo $page; ?>&sortBy=school">School</a></th>
+                <th scope="col-1"><a style="text-decoration: none; color: white;" href="index.php?page=<?php echo $page; ?>&sortBy=branch">Branch</a></th>
+                <th scope="col-1"><a style="text-decoration: none; color: white;" href="index.php?page=<?php echo $page; ?>&sortBy=field_of_work">Field of work</a></th>
+                <th scope="col-1"><a style="text-decoration: none; color: white;" href="index.php?page=<?php echo $page; ?>&sortBy=created_at">Applied</a></th>
             </tr>
         </thead>
         <tbody>
@@ -92,7 +105,7 @@ $result = fetchPaginatedResult($conn, "application_portal", RESULT_PER_PAGE, $of
                     </td>
                     <td>
                         <a href="applicant.php?id=<?php echo $row["id"]; ?>" style="text-decoration: none; color: black">
-                            <?php echo $row["skills"]; ?>
+                            <?php echo $row["field_of_work"]; ?>
                         </a>
                     </td>
                     <td>
