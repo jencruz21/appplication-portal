@@ -4,6 +4,7 @@ require "includes/db.php";
 require "includes/email.php";
 require "includes/functions.php";
 require_once "includes/config.php";
+require "admin/includes/functions.php";
 
 if(!isset($_GET["pass"]) && empty($_GET["pass"])) {
     die();
@@ -53,8 +54,9 @@ if (isset($_POST["submit"])) {
 
     // business profile
     // https://drive.google.com/file/d/1cNJSDWfnjf8pLSX96_rBtXeRMdKFtsPy/view
-    saveFormData($conn, $name, "Pre-screening", $email, $contactNo, $school, $branch, $course, $skills, $fow, $resume, $date);
     sendEmail($email, $name, "Pre-Screening Form Link", $body);
+    saveFormData($conn, $name, "Pre-screening", $email, $contactNo, $school, $branch, $course, $skills, $fow, $resume, $date);
+    updateApplicantsCount($conn, "1");
     unset($_SESSION["name"]);
     unset($_SESSION["email_address"]);
     unset($_SESSION["contact_no"]);

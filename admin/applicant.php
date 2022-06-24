@@ -1,52 +1,112 @@
 <?php
-    session_start();
-    require "includes/functions.php";
-    require "../includes/db.php";
+session_start();
+require "includes/functions.php";
+require "../includes/db.php";
 
-    if (!isset($_SESSION["username"])) {
-        header("Location: login.php");
-        die();
-    }
+if (!isset($_SESSION["username"])) {
+	header("Location: login.php");
+	die();
+}
 
 
-    if (isset($_GET["id"])) {
-        $id = $_GET["id"];
+if (isset($_GET["id"])) {
+	$id = $_GET["id"];
 
-        $row = getApplicantById($conn, $id);
-        $date = $row["created_at"];
-        $dt = new DateTime($date);
-    }
+	$row = getApplicantById($conn, $id);
+	$date = $row["created_at"];
+	$dt = new DateTime($date);
+}
 ?>
 
-<?php require "includes/admin_header.php"; ?>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
 
-<div class="container">
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="applicant.php?id=<?php echo $row["id"];?>">Applicant Details</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="emailApplicant.php?id=<?php echo $row["id"];?>">Email Applicant</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="updateApplicant.php?id=<?php echo $row["id"];?>">Update Applicant</a>
-        </li>
-    </ul>
-    <div class="rounded shadow p-3 mb-3">
-        <h2 class="text-left mb-2"><?php echo $row["name"]; ?></h2>
-        <i>Status:</i><h4 class="text-left mb-2"><?php echo $row["status"]; ?></h4>
-        <i>Field of work:</i><h4 class="text-left mb-2"><?php echo $row["field_of_work"]; ?></h4>
-        <i>School:</i><h4 class="text-left mb-2"><?php echo $row["school"]; ?></h4>
-        <i>Branch:</i><h4 class="text-left mb-2"><?php echo $row["branch"]; ?></h4>
-        <i>Course:</i><h4 class="text-left mb-2"><?php echo $row["course"]; ?></h4>
-        <i>Field of work:</i><h4 class="text-left mb-2"><?php echo $row["skills"]; ?></h4>
-        <i>Email:</i><h4 class="text-left mb-2"><?php echo $row["email"]; ?></h4>
-        <i>Applied since:</i><h4 class="text-left mb-2"><?php echo date_format($dt, "Y/m/d"); ?></h4>
-        <i>Resume:</i>
-        <a href="<?php echo $row["resume"]; ?>">
-            <h4 class="text-left mb-2">Link for the resume</h4>
-        </a>
-    </div>
-</div>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MGHS-Applicant Details</title>
+	<link rel="icon" href="img/logo.png">
+	<link rel="stylesheet" href="css/style_applicant_details.css">
+</head>
 
-<?php require "includes/admin_footer.php"; ?>
+<body>
+
+	<div class="container">
+
+		<?php require "includes/navbar.php"; ?>
+
+		</nav>
+
+		<section class="main">
+			<div class="main-top">
+				<h1>Applicant Details</h1>
+			</div>
+			<section class="main-table">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>NAME</th>
+							<th>EMAIL</th>
+							<th>STATUS</th>
+							<th>FIELD OF WORK</th>
+							<th>DATE APPLIED</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<?php echo $row["name"]; ?>
+							</td>
+							<td>
+								<?php echo $row["email"]; ?>
+							</td>
+							<td>
+								<?php echo $row["status"]; ?>
+							</td>
+							<td>
+								<?php echo $row["field_of_work"]; ?>
+							</td>
+							<td>
+								<?php echo date_format($dt, "Y/m/d"); ?>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>TECHNICAL SKILLS</th>
+							<th>SCHOOL</th>
+							<th>BRANCH</th>
+							<th>COURSE</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><?php echo $row["skills"]; ?></td>
+							<td><?php echo $row["school"]; ?></td>
+							<td><?php echo $row["branch"]; ?></td>
+							<td><?php echo $row["course"]; ?></td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>Resume</td>
+							<td><a href="<?php echo $row["resume"]; ?>">GDrive link for the resume of <?php echo $row["name"]; ?></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<a class="save" href="applicant-edit-details.html">EDIT</a>
+			<a class="cancel" href="emailApplicant.php?id=<?php echo $row["id"]; ?>">EMAIL</a>
+
+		</section>
+
+	</div>
+
+</body>
+
+</html>

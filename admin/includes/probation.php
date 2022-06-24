@@ -1,6 +1,6 @@
 <?php 
 require "../../includes/db.php";
-require "../../includes/email.php";
+require "email.php";
 require "functions.php";
 
 // name
@@ -25,8 +25,6 @@ if (isset($_POST["submit"])) {
     $name = explode(" ", $name);
 
     $details = array();
-    $details["logo"] = "./images/logo.png";
-    $details["envelope"] = "./images/Envelope.png";
     $details["name"] = $name[0];
     $details["surname"] = end($name);
     $details["course"] = $course;
@@ -34,7 +32,7 @@ if (isset($_POST["submit"])) {
     $details["time"] = $time;
     $details["link"] = "https://meet.google.com/ron-htvc-zzm";
 
-    $body = file_get_contents("../../templates/html-template/Applicants' Status Upcoming Orientation Schedule.html");
+    $body = file_get_contents("../../templates/html-template/Set to Probation.html");
 
     foreach($details as $key => $value) {
         $body = str_replace("{{ " . $key . " }}", $value, $body);
@@ -43,6 +41,6 @@ if (isset($_POST["submit"])) {
     // name, email, subject, body
     sendEmail($email, $name[0], $subject, $body);
 
-    setToProbation($conn, $id);
+    setToProbation($conn, $id, $dateTimeString);
     header("location: ../applicant.php?id=" . $id);
 }

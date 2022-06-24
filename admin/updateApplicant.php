@@ -1,123 +1,149 @@
 <?php
-    session_start();
-    require "includes/functions.php";
-    require "../includes/db.php";
+session_start();
+require "includes/functions.php";
+require "../includes/db.php";
 
-    if (!isset($_SESSION["username"])) {
-        header("Location: login.php");
-        die();
-    }
+if (!isset($_SESSION["username"])) {
+	header("Location: login.php");
+	die();
+}
 
-    $id = $_GET["id"];
-    $row = getApplicantById($conn, $id);
+$id = $_GET["id"];
+$row = getApplicantById($conn, $id);
 
-    if (isset($_POST["submit"])) {
-        $name = $_POST["name"];
-        $email = $_POST["email_address"];
-        $status = $_POST["status"];
-        $fow = $_POST["field_of_work"];
-        $contact_no = $_POST["contact_number"];
-        $school = $_POST["school"];
-        $branch = $_POST["branch"];
-        $course = $_POST["course"];
-        $skills = $_POST["skills"];
-        $resume = $_POST["gdrive_link"];
-        $id = $row["id"];
+if (isset($_POST["submit"])) {
+	$name = $_POST["name"];
+	$email = $_POST["email_address"];
+	$status = $_POST["status"];
+	$fow = $_POST["field_of_work"];
+	$contact_no = $_POST["contact_number"];
+	$school = $_POST["school"];
+	$branch = $_POST["branch"];
+	$course = $_POST["course"];
+	$skills = $_POST["skills"];
+	$resume = $_POST["gdrive_link"];
+	$id = $row["id"];
 
-        if (isFieldsEmpty($name, $email, $status, $contact_no, $school, $branch, $course, $skills, $fow, $resume)) {
-            header("location: " . $_SERVER['PHP_SELF'] . "?error=Please fill all the fields!");
-            exit();
-        } else {
-            updateApplicant($name, $ema);
-            header("location: applicant.php?id=" . $row["id"]);
-        }
-    }
+	if (isFieldsEmpty($name, $email, $status, $contact_no, $school, $branch, $course, $skills, $fow, $resume)) {
+		header("location: " . $_SERVER['PHP_SELF'] . "?error=Please fill all the fields!");
+		exit();
+	} else {
+		updateApplicant($conn, $name, $status, $email, $contactNo, $school, $branch, $course, $skills, $fow, $resume, $id);
+		header("location: applicant.php?id=" . $row["id"]);
+	}
+}
 ?>
 
-<?php require "includes/admin_header.php"; ?>
 
-<div class="container col align-self-center">
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="applicant.php?id=<?php echo $row["id"];?>">Applicant Details</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="emailApplicant.php?id=<?php echo $row["id"];?>">Email Applicant</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="updateApplicant.php?id=<?php echo $row["id"];?>">Update Applicant</a>
-        </li>
-    </ul>
-    <form class="p-5 rounded shadow" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
-        <div class="row">
-            <div class="mb-2 col-lg-4">
-                <label for="name" class="form-label">Name</label>
-                <input class="form-control" name="name" type="text" id="name" placeholder="enter-name" value="<?php echo $row["name"];?>"/> <br>
-            </div>
-            <div class="mb-2 col-lg-4">
-                <label for="email_address" class="form-label">Email</label>
-                <input class="form-control" name="email_address" type="email" id="email_address" placeholder="enter-email" value="<?php echo $row["email"];?>"/> <br>
-            </div>
-            <div class="mb-2 col-lg-4">
-                <label for="field_of_work" class="form-label">Field of work</label>
-                <select name="field_of_work" class="form-select">
-                    <option value="">select</option>
-                    <option value="Advertising">Advertising</option>
-                    <option value="Broadcasting">Broadcasting</option>
-                    <option value="Communication">Communication</option>
-                    <option value="Digital Design">Digital Design</option>
-                    <option value="English Major">English Major</option>
-                    <option value="Filipino Major">Filipino Major</option>
-                    <option value="Financial Management">Financial Management</option>
-                    <option value="Fine Arts">Fine Arts</option>
-                    <option value="Graphic Artists">Graphic Artists</option>
-                    <option value="Human Resources">Human Resources</option>
-                    <option value="Journalism">Journalism</option>
-                    <option value="Marketing">Marketing</option>
-                    <option value="Multimedia">Multimedia</option>
-                    <option value="Nutrition & Food Technology">Nutrition & Food Technology</option>
-                    <option value="Office Administration">Office Administration</option>
-                    <option value="Public Relations">Public Relations</option>
-                    <option value="Web & App Developers">Web & App Developers</option>
-                </select> <br>
-            </div>
-        </div>
-        <div class="row">
-            <div class="mb-2 col-lg-2">
-                <label for="contact_number" class="form-label">Contact Number</label>
-                <input class="form-control" name="contact_number" type="text" placeholder="09xxxxxxxxx"  value="<?php echo $row["contact_no"];?>"/> <br>
-            </div>
-            <div class="mb-2 col-lg-5">
-                <label for="school" class="form-label">School</label>
-                <input class="form-control" name="school" type="text" placeholder="enter-school" value="<?php echo $row["school"];?>"/> <br>
-            </div>
-            <div class="mb-2 col-lg-5">
-                <label for="branch" class="form-label">Branch</label>
-                <input class="form-control" name="branch" type="text" placeholder="enter-branch" value="<?php echo $row["branch"];?>"/> <br>
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="mb-2 col-lg-4">
-                <label for="course" class="form-label">Course</label>
-                <input class="form-control" name="course" type="text" placeholder="enter-course" value="<?php echo $row["course"];?>"/> <br>
-            </div>
-            <div class="mb-2 col-lg-6">
-                <label for="status" class="form-label">Technical Skills</label>
-                <input class="form-control" name="technical_skills" type="text" value="<?php echo $row["skills"];?>"/> <br>
-            </div>
-            <div class="mb-2 col-lg-2">
-                <label for="resume" class="form-label">Link for resume<span style="color: red;"> *needed*</span></label>
-                <input class="form-control" type="text" name="gdrive_link" placeholder="enter-gdrive-link">
-            </div>
-        </div>
-        <input type="submit" class="btn btn-primary" name="submit" value="Update"/>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
 
-        <?php if(isset($_GET["error"])): ?>
-            <div class="alert alert-danger mt-3">
-                Please fill all the fields!
-            </div>
-        <?php endif; ?>
-    </form>
-</div>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MGHS-Edit Applicant Details</title>
+	<link rel="icon" href="img/logo.png">
+	<link rel="stylesheet" href="css/style_applicant_details_edit.css">
+</head>
 
-<?php require "includes/admin_footer.php"; ?>
+<body>
+
+	<div class="container">
+		<?php require "includes/navbar.php"; ?>
+
+		<section class="main">
+			<div class="main-top">
+				<h1>Applicant Details</h1>
+			</div>
+			<section class="main-table">
+				<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>NAME</th>
+								<th>EMAIL</th>
+								<th>STATUS</th>
+								<th>FIELD OF WORK</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<input name="name" type="text" id="name" placeholder="Name" style="text-align: center; width: 100%;" value="<?php echo $row["name"]; ?>">
+								</td>
+								<td>
+									<input name="email" type="email" id="name" placeholder="Email" style="text-align: center; width: 100%;" value="<?php echo $row["email"]; ?>">
+								</td>
+								<td>
+									<input name="status" type="text" id="name" placeholder="Status" style="text-align: center; width: 100%;" value="<?php echo $row["status"]; ?>">
+								</td>
+								<td>
+									<select name="field_of_work" id="status">
+										<option value="">select</option>
+										<option value="Advertising">Advertising</option>
+										<option value="Broadcasting">Broadcasting</option>
+										<option value="Communication">Communication</option>
+										<option value="Digital Design">Digital Design</option>
+										<option value="English Major">English Major</option>
+										<option value="Filipino Major">Filipino Major</option>
+										<option value="Financial Management">Financial Management</option>
+										<option value="Fine Arts">Fine Arts</option>
+										<option value="Graphic Artists">Graphic Artists</option>
+										<option value="Human Resources">Human Resources</option>
+										<option value="Journalism">Journalism</option>
+										<option value="Marketing">Marketing</option>
+										<option value="Multimedia">Multimedia</option>
+										<option value="Nutrition & Food Technology">Nutrition & Food Technology</option>
+										<option value="Office Administration">Office Administration</option>
+										<option value="Public Relations">Public Relations</option>
+										<option value="Web & App Developers">Web & App Developers</option>
+									</select>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>TECHNICAL SKILLS</th>
+								<th>SCHOOL</th>
+								<th>BRANCH</th>
+								<th>COURSE</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<input name="skills" type="text" id="name" placeholder="Technical Skills" style="text-align: center; width: 100%;" value="<?php echo $row["skills"]; ?>">
+								</td>
+								<td>
+									<input name="school" type="text" id="name" placeholder="School" style="text-align: center; width: 100%;" value="<?php echo $row["school"]; ?>">
+								</td>
+								<td>
+									<input name="branch" type="text" id="name" placeholder="Branch" style="text-align: center; width: 100%;" value="<?php echo $row["branch"]; ?>">
+								</td>
+								<td>
+									<input name="course" type="text" id="name" placeholder="Course" style="text-align: center; width: 100%;" value="<?php echo $row["course"]; ?>">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Resume</td>
+								<td><input name="resume" type="text" id="name" placeholder="Insert the new link for the drive link" style="text-align: center; width: 100%;" value="<?php echo $row["resume"]; ?>"></td>
+							</tr>
+						</tbody>
+					</table>
+			</section>
+			<input name="submit" type="submit" class="save" value="SAVE">
+			</form>
+		</section>
+
+	</div>
+
+</body>
+
+</html>

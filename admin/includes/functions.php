@@ -1,7 +1,5 @@
 <?php
 
-// require "../../includes/db.php";
-
 function sanitizeInputs($conn, $input)
 {
     $input = trim($input);
@@ -191,9 +189,13 @@ function deleteApplicant($conn, $id)
 
 // storing scheduled meeting
 
-function saveSchedule($conn, $schedule, $id)
-{
-}
+// function saveSchedule($conn, $schedule, $id)
+// {
+//     $query = "UPDATE application_portal SET meeting_sched = ? WHERE id = ?";
+//     $stmt = mysqli_prepare($conn, $query);
+//     mysqli_stmt_bind_param($stmt, "ss", $schedule, $id);
+//     mysqli_stmt_execute($stmt);
+// }
 
 function fetchNumRows($conn, $tableName)
 {
@@ -213,16 +215,22 @@ function fetchPaginatedResult($conn, $tableName, $resultsPerPage, $offset, $colN
 
 function fetchPaginatedSearchResult($conn, $tableName, $resultsPerPage, $offset, $colName, $param)
 {
-    // name
-    // status
-    // email
-    // school
-    // branch
-    // field of work
     $param = "'%" . $param . "%'";
     $query =
         "SELECT * FROM " . $tableName .
         " WHERE CONCAT_WS(' ', name, email, status, school, branch, field_of_work) LIKE " . $param .
+        " ORDER BY " . $colName . " ASC " .
+        " LIMIT " . $resultsPerPage . " OFFSET " . $offset;
+    $paginatedSearchResult = mysqli_query($conn, $query);
+    return $paginatedSearchResult;
+}
+
+function fetchPaginatedAdminsSearchResult($conn, $tableName, $resultsPerPage, $offset, $colName, $param)
+{
+    $param = "'%" . $param . "%'";
+    $query =
+        "SELECT * FROM " . $tableName .
+        " WHERE CONCAT_WS(' ', username, role, name, email) LIKE " . $param .
         " ORDER BY " . $colName . " ASC " .
         " LIMIT " . $resultsPerPage . " OFFSET " . $offset;
     $paginatedSearchResult = mysqli_query($conn, $query);
@@ -284,6 +292,58 @@ function getUserById($conn, $id)
     $result = mysqli_stmt_get_result($stmt);
     $row = mysqli_fetch_assoc($result);
     return $row;
+}
+
+// fetch and update the value in dashboard
+
+// fetch data from people_count
+function getPeopleCount($conn)
+{
+    $query = "SELECT * FROM people_count WHERE id = 1";
+    $result = mysqli_query($conn, $query);
+    $result = mysqli_fetch_assoc($result);
+    return $result;
+}
+
+// applicants update
+function updateApplicantsCount($conn, $count) {
+    $query = "UPDATE people_count SET applicants = applicants + " . $count;
+    mysqli_query($conn, $query);
+}
+
+// admins update
+function updateAdminsCount($conn, $count)
+{
+    $query = "UPDATE people_count SET applicants = applicants + " . $count;
+    mysqli_query($conn, $query);
+}
+
+// moderator update
+function updateModCount($conn, $count)
+{
+    $query = "UPDATE people_count SET applicants = applicants + " . $count;
+    mysqli_query($conn, $query);
+}
+
+// probation update
+function updateProbationCount($conn, $count)
+{
+    $query = "UPDATE people_count SET applicants = applicants + " . $count;
+    mysqli_query($conn, $query);
+}
+
+// orientation update
+function updateOrientationCount($conn, $count)
+{
+    $query = "UPDATE people_count SET applicants = applicants + " . $count;
+    mysqli_query($conn, $query);
+}
+
+// waitlisted update
+function updateWaitlistedCount($conn, $count)
+{
+    $query = "UPDATE people_count SET applicants = applicants + " . $count;
+    mysqli_query($conn, $query);
 }
 
 // require "../../includes/db.php";

@@ -1,7 +1,7 @@
 <?php
 
 require "../../includes/db.php";
-require "../../includes/email.php";
+require "email.php";
 require "functions.php";
 
 // name
@@ -30,7 +30,6 @@ if (isset($_POST["submit"])) {
     
     // name, email, subject, body
     sendEmail($email, $name[0], $subject, $body);
-
     setToWithdrawn($conn, $id);
     header("location: ../applicant.php?id=" . $id);
 }

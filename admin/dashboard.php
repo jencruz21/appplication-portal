@@ -1,14 +1,115 @@
 <?php
+
+require "includes/functions.php";
+require "../includes/db.php";
 session_start();
 
 if (!isset($_SESSION["username"])) {
-    header("Location: login.php");
-    die();
+	header("Location: login.php");
+	die();
 }
+
+$count = getPeopleCount($conn);
+
 ?>
 
-<?php require "includes/admin_header.php"; ?>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
 
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MGHS-Dashboard</title>
+	<link rel="icon" href="img/logo.png">
+	<link rel="stylesheet" href="css/style_dashboard.css">
+</head>
 
+<body>
 
-<?php require "includes/admin_footer.php"; ?>
+	<div class="container">
+
+		<?php require "includes/navbar.php"; ?>
+
+		<section class="content">
+
+			<div class="main">
+				<div class="dashboard">
+					<div class="title">
+						<h2>Welcome <?php echo $_SESSION["username"] ?>!</h2>
+						<p>Be Goal Driven Today</p>
+					</div>
+					<div class="total">
+						<div class="roles">
+							<img src="img/applicants.png">
+							<div class="texts">
+								<h3>Applicants</h3>
+								<span><?php echo $count["applicants"]; ?></span>
+							</div>
+						</div>
+						<div class="roles">
+							<img src="img/moderators.png">
+							<div class="texts">
+								<h3>Moderators</h3>
+								<span><?php echo $count["moderators"]; ?></span>
+							</div>
+						</div>
+						<div class="roles">
+							<img src="img/administrators.png">
+							<div class="texts">
+								<h3>Administrators</h3>
+								<span><?php echo $count["administrators"]; ?></span>
+							</div>
+						</div>
+					</div>
+					<div class="hero">
+						<img src="img/hero.png">
+					</div>
+				</div>
+			</div>
+
+			<div class="title">
+				<h1>Applicant Summary</h1>
+			</div>
+			<div class="summary">
+				<div class="cards">
+					<div class="card1">
+						<h3>Probation</h3>
+						<p>This Week</p>
+						<h1><?php echo $count["probation"]; ?></h1>
+						<img src="img/approved.png">
+					</div>
+				</div>
+				<div class="cards">
+					<div class="card2">
+						<h3>Orientation</h3>
+						<p>This Week</p>
+						<h1><?php echo $count["orientation"]; ?></h1>
+						<img src="img/probation.png">
+					</div>
+				</div>
+				<div class="cards">
+					<div class="card3">
+						<h3>Waitlisted</h3>
+						<p>This Week</p>
+						<h1><?php echo $count["waitlisted"]; ?></h1>
+						<img src="img/rejected.png">
+					</div>
+				</div>
+				<div class="cards">
+					<div class="card4">
+						<h3 id="_month">June</h3>
+						<h4 id="_date">20</h4>
+						<h2 id="_year">2022</h2>
+						<img src="img/date.png">
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+	</div>
+	<script src="js/script.js"></script>
+</body>
+
+</html>

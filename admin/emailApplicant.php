@@ -1,84 +1,123 @@
 <?php
-    session_start();
-    require "includes/functions.php";
-    require "../includes/db.php";
+session_start();
+require "includes/functions.php";
+require "../includes/db.php";
 
-    if (!isset($_SESSION["username"])) {
-        header("Location: login.php");
-        die();
-    }
+if (!isset($_SESSION["username"])) {
+	header("Location: login.php");
+	die();
+}
 
-    if (isset($_GET["id"])) {
-        $id = $_GET["id"];
+if (isset($_GET["id"])) {
+	$id = $_GET["id"];
 
-        $row = getApplicantById($conn, $id);
-        $date = $row["created_at"];
-        $dt = new DateTime($date);
-    }
+	$row = getApplicantById($conn, $id);
+	$date = $row["created_at"];
+	$dt = new DateTime($date);
+}
 ?>
 
-<?php require "includes/admin_header.php"; ?>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
 
-<div class="container">
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="applicant.php?id=<?php echo $row["id"];?>">Applicant Details</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="emailApplicant.php?id=<?php echo $row["id"];?>">Email Applicant</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="updateApplicant.php?id=<?php echo $row["id"];?>">Update Applicant</a>
-        </li>
-    </ul>
-    <div class="row row-cols-2">
-        <div class="col-lg-6">
-            <form class="mb-3 shadow rounded p-3" method="POST" action="includes/probation.php">
-                <input type="hidden" name="id" value="<?php echo $row["id"];?>">
-                <input type="hidden" name="name" value="<?php echo $row["name"];?>">
-                <input type="hidden" name="email" value="<?php echo $row["email"];?>">
-                <input type="hidden" name="course" value="<?php echo $row["course"];?>">
-                <div class="mb-3">
-                    <label for="date">Date</label>
-                    <input class="form-control" type="date" name="date" id="date">
-                </div>
-                <div class="mb-3">
-                    <label for="time">Time</label>
-                    <input class="form-control" type="time" name="time" id="time" step="1">
-                </div>
-                <button class="btn btn-success w-100" name="submit">Probation</button>
-            </form>
-            <form class="mb-3 rounded shadow p-3"  method="POST" action="includes/waitlisted.php">
-                <input type="hidden" name="id" value="<?php echo $row["id"];?>">
-                <input type="hidden" name="name" value="<?php echo $row["name"];?>">
-                <input type="hidden" name="email" value="<?php echo $row["email"];?>">
-                <button class="btn btn-danger w-100" name="submit">Waitlisted</button>
-            </form>
-        </div>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MGHS-Email Applicant</title>
+	<link rel="icon" href="img/logo.png">
+	<link rel="stylesheet" href="css/style_applicant_email.css">
+</head>
 
-        <div class="col-lg-6">
-            <form class="mb-3 rounded shadow p-3" method="POST" action="includes/followup.php">
-                <div class="mb-3">
-                    <label for="date">Date</label>
-                    <input class="form-control" type="date" name="date" id="date">
-                </div>
-                <div class="mb-3">
-                    <label for="time">Time</label>
-                    <input class="form-control" type="time" name="time" id="time" step="1">
-                </div>
-                <input type="hidden" name="id" value="<?php echo $row["id"];?>">
-                <input type="hidden" name="name" value="<?php echo $row["name"];?>">
-                <input type="hidden" name="email" value="<?php echo $row["email"];?>">
-                <button class="btn btn-info w-100" name="submit">Remind applicant</button>
-            </form>
-            <form class="mb-3 rounded shadow p-3" method="POST" action="includes/withdrawn.php">
-                <input type="hidden" name="id" value="<?php echo $row["id"];?>">
-                <input type="hidden" name="name" value="<?php echo $row["name"];?>">
-                <input type="hidden" name="email" value="<?php echo $row["email"];?>">
-                <button class="btn btn-warning w-100" name="submit">Withdrawn</button>
-            </form>  
-        </div>
-    </div>
-</div>
+<body>
 
-<?php require "includes/admin_footer.php"; ?>
+	<div class="container">
+		<?php require "includes/navbar.php"; ?>
+
+		<section class="main">
+			<div class="main-top">
+				<h1>Email Applicant</h1>
+			</div>
+
+			<div class="summary">
+				<div class="cards">
+					<form method="POST" action="includes/probation.php">
+						<div class="card">
+							<input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+							<input type="hidden" name="name" value="<?php echo $row["name"]; ?>">
+							<input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
+							<input type="hidden" name="course" value="<?php echo $row["course"]; ?>">
+							<div class="date">
+								<h5>DATE</h5>
+								<input name="date" type="date" style="width: 100%; padding: 5px 10px; border: 1px solid #74C738;">
+							</div>
+							<div class="time">
+								<h5>TIME</h5>
+								<input name="time" type="time" style="width: 100%; padding: 5px 10px; border: 1px solid #74C738;">
+							</div>
+							<input name="submit" type="submit" class="probation" value="Probation">
+						</div>
+					</form>
+				</div>
+				<div class="cards">
+					<form method="POST" action="includes/orientation.php">
+						<div class="card">
+							<input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+							<input type="hidden" name="name" value="<?php echo $row["name"]; ?>">
+							<input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
+							<input type="hidden" name="course" value="<?php echo $row["course"]; ?>">
+							<div class="date">
+								<h5>DATE</h5>
+								<input name="date" type="date" style="width: 100%; padding: 5px 10px; border: 1px solid #74C738;">
+							</div>
+							<div class="time">
+								<h5>TIME</h5>
+								<input name="time" type="time" style="width: 100%; padding: 5px 10px; border: 1px solid #74C738;">
+							</div>
+							<input name="submit" type="submit" class="orientation" value="Orientation">
+						</div>
+					</form>
+				</div>
+				<div class="cards">
+					<form method="POST" action="includes/followup.php">
+						<div class="card">
+							<input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+							<input type="hidden" name="name" value="<?php echo $row["name"]; ?>">
+							<input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
+							<input type="hidden" name="course" value="<?php echo $row["course"]; ?>">
+							<div class="date">
+								<h5>DATE</h5>
+								<input name="date" type="date" style="width: 100%; padding: 5px 10px; border: 1px solid #74C738;">
+							</div>
+							<div class="time">
+								<h5>TIME</h5>
+								<input name="time" type="time" style="width: 100%; padding: 5px 10px; border: 1px solid #74C738;">
+							</div>
+							<input name="submit" type="submit" class="remind" value="Remind">
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="buttons">
+				<form method="POST" action="includes/withdrawn.php">
+					<input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+					<input type="hidden" name="name" value="<?php echo $row["name"]; ?>">
+					<input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
+					<input name="submit" type="submit" class="withdrawn" value="Withdrawn">
+				</form>
+				<form method="POST" action="includes/waitlisted.php">
+					<input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+					<input type="hidden" name="name" value="<?php echo $row["name"]; ?>">
+					<input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
+					<input name="submit" type="submit" class="waitlisted" value="Waitlisted">
+				</form>
+			</div>
+
+		</section>
+
+	</div>
+
+</body>
+
+</html>

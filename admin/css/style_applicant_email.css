@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+	padding: 0;
+	margin: 0;	
+	box-sizing: border-box;
+	text-decoration: none;
+	font-family: 'Poppins', sans-serif;
+}
+
+body{
+	background-color: #F5F5F5;
+}
+
+/*****Navigation Bar*****/
+
+nav{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	width: 100px;
+	background: #fff;
+	overflow: hidden;
+	border-right: 1px solid #D9D9D9;
+	z-index: 1;
+}
+
+.logo{
+	text-align: center;
+	display: flex;
+	margin: 37px 0 0 24px;
+	padding-bottom: 75px;
+}
+
+input[type=submit] {
+	position: relative;
+	display: table;
+}
+
+.applicant{
+	text-align: center;
+	display: flex;
+	margin: 0px 0 20px 28px;
+	padding-bottom: 30px;
+}
+
+.admin{
+	text-align: center;
+	display: flex;
+	margin: 0px 0 20px 28px;
+	padding-bottom: 30px;
+}
+
+.report{
+	text-align: center;
+	display: flex;
+	margin: 0 0 20px 28px;
+}
+
+hr{
+	width: 75px;
+	position: absolute;
+	top: 0;
+	margin: 120px 12px;
+	border: 1px solid #D9D9D9
+}
+
+.signout{
+	position: absolute;
+	bottom: 0;
+	margin: 30px 38px;
+}
+
+.container{
+	display: flex;
+}
+
+/*****Table*****/
+.main{
+	width: 100%;
+	position: relative;
+	padding-top: 30px;
+	padding-left: 130px;
+}
+
+.main-top{
+	display: flex;
+	width: 100%;
+}
+
+.main h1{
+	margin-left: 25px;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 48px;
+	color: #6F6969;
+}
+
+.main .summary{
+	display: inline-flex;
+	width: 100%;
+	padding-left: 20px;
+}
+
+.summary .cards{
+	width: 33%;
+	color: #5B5656;
+	padding-right: 30px;
+	padding-top: 20px;
+}
+
+.card{
+	background-color: #fff;
+	border-radius: 5px;
+	border: 1px solid #74C738;
+	padding: 20px;
+}
+
+.date{
+	padding-bottom: 10px;
+}
+
+.cards h5{
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 22px;
+	color: #5B5656;
+	letter-spacing: 0.05em;
+	padding-bottom: 5px;
+}
+
+.buttons {
+	display: inline-flex;
+	float: right;
+	padding-top: 20px;
+	padding-right: 50px;
+	position: relative;
+}
+
+/*****buttons*****/
+
+.probation{
+	background: #107A54;
+	margin-top: 20px;
+	width: 100%;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+	height: 35px;
+	padding-top: 4px;
+	text-align: center;
+	border-radius: 5px;
+}
+
+
+.waitlisted{
+	background: #E74744;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600; 
+	padding: 7px 45px;
+	border-radius: 10px;
+	border: none;
+}
+
+.withdrawn{
+	border:none;
+	cursor: pointer;
+	margin-right: 20px;
+	color: #fff;
+	background-color: #FFBC01;
+	font-size: 18px;
+	font-weight: 600;
+	padding: 7px 45px;
+	border-radius: 10px;
+}
+
+.remind{
+	background: #00BBEF;
+	margin-top: 20px;
+	width: 100%;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+	height: 35px;
+	padding-top: 4px;
+	text-align: center;
+	border-radius: 5px;
+}
+
+
+.orientation{
+	background: #C89347;
+	margin-top: 20px;
+	width: 100%;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+	height: 35px;
+	padding-top: 4px;
+	text-align: center;
+	border-radius: 5px;
+}
