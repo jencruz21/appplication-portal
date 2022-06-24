@@ -100,7 +100,7 @@ if (isset($_GET["id"])) {
 					</tbody>
 				</table>
 			</section>
-			<a class="save" href="applicant-edit-details.html">EDIT</a>
+			<a class="save" href="updateApplicant.php?id=<?php echo $row["id"]; ?>">EDIT</a>
 			<a class="cancel" href="emailApplicant.php?id=<?php echo $row["id"]; ?>">EMAIL</a>
 
 		</section>
