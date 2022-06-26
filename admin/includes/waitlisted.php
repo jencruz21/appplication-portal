@@ -1,6 +1,6 @@
 <?php 
 require "../../includes/db.php";
-require "../../includes/email.php";
+require "email.php";
 require "functions.php";
 
 // name
