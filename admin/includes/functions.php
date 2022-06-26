@@ -306,44 +306,56 @@ function getPeopleCount($conn)
 }
 
 // applicants update
-function updateApplicantsCount($conn, $count) {
-    $query = "UPDATE people_count SET applicants = applicants + " . $count;
-    mysqli_query($conn, $query);
+function getApplicantsCount($conn) {
+    $query = "SELECT COUNT(id) FROM application_portal";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row["COUNT(id)"];
 }
 
 // admins update
-function updateAdminsCount($conn, $count)
+function getAdminsCount($conn)
 {
-    $query = "UPDATE people_count SET applicants = applicants + " . $count;
-    mysqli_query($conn, $query);
+    $query = "SELECT COUNT(role) FROM application_portal_admin WHERE role = 'admin'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row["COUNT(role)"];
 }
 
 // moderator update
-function updateModCount($conn, $count)
+function getModCount($conn)
 {
-    $query = "UPDATE people_count SET applicants = applicants + " . $count;
-    mysqli_query($conn, $query);
+    $query = "SELECT COUNT(role) FROM application_portal_admin WHERE role = 'moderator'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row["COUNT(role)"];
 }
 
 // probation update
-function updateProbationCount($conn, $count)
+function getProbationCount($conn)
 {
-    $query = "UPDATE people_count SET applicants = applicants + " . $count;
-    mysqli_query($conn, $query);
+    $query = "SELECT COUNT(role) FROM application_portal_admin WHERE role = 'Probation'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row["COUNT(role)"];
 }
 
 // orientation update
-function updateOrientationCount($conn, $count)
+function updateOrientationCount($conn)
 {
-    $query = "UPDATE people_count SET applicants = applicants + " . $count;
-    mysqli_query($conn, $query);
+    $query = "SELECT COUNT(role) FROM application_portal_admin WHERE role = 'Orientation'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row["COUNT(role)"];
 }
 
 // waitlisted update
-function updateWaitlistedCount($conn, $count)
+function updateWaitlistedCount($conn)
 {
-    $query = "UPDATE people_count SET applicants = applicants + " . $count;
-    mysqli_query($conn, $query);
+    $query = "SELECT COUNT(role) FROM application_portal_admin WHERE role = 'Waitlisted'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row["COUNT(role)"];
 }
 
 // require "../../includes/db.php";

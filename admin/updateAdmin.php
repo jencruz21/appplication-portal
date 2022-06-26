@@ -85,9 +85,9 @@ if (isset($_POST["submit"])) {
 						<h5>ROLE</h5>
 
 						<select name="role" id="roles" style="width: 110%;">
-							<option>Select</option>
+							<option value="select">Select</option>
 							<option value="admin">Administrator</option>
-							<option value="mod">Moderator</option>
+							<option value="moderator">Moderator</option>
 						</select>
 
 					</div>

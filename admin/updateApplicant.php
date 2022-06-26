@@ -76,7 +76,13 @@ if (isset($_POST["submit"])) {
 									<input name="email" type="email" id="name" placeholder="Email" style="text-align: center; width: 100%;" value="<?php echo $row["email"]; ?>">
 								</td>
 								<td>
-									<input name="status" type="text" id="name" placeholder="Status" style="text-align: center; width: 100%;" value="<?php echo $row["status"]; ?>">
+									<select name="status" id="status">
+										<option value="">select</option>
+										<option value="Probation">Probation</option>
+										<option value="Orientation">Orientation</option>
+										<option value="Waitlisted">Waitlisted</option>
+										<option value="Withdrawn">Withdrawn</option>
+									</select>
 								</td>
 								<td>
 									<select name="field_of_work" id="status">

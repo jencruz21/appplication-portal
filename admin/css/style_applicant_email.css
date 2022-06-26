@@ -154,6 +154,10 @@ hr{
 	border-radius: 5px;
 }
 
+.probation:hover{
+	background: #034E33;
+	border: none;
+}
 
 .waitlisted{
 	background: #E74744;
@@ -162,6 +166,11 @@ hr{
 	font-weight: 600; 
 	padding: 7px 45px;
 	border-radius: 10px;
+	border: none;
+}
+
+.waitlisted:hover{
+	background: #BE2320;
 	border: none;
 }
 
@@ -177,6 +186,13 @@ hr{
 	border-radius: 10px;
 }
 
+
+.withdrawn:hover{
+	background: #CA9501;
+	border: none;
+	cursor: pointer;
+}
+
 .remind{
 	background: #00BBEF;
 	margin-top: 20px;
@@ -190,6 +206,10 @@ hr{
 	border-radius: 5px;
 }
 
+.remind:hover{
+	background: #079AC3;
+	border: none;
+}
 
 .orientation{
 	background: #C89347;
@@ -202,4 +222,9 @@ hr{
 	padding-top: 4px;
 	text-align: center;
 	border-radius: 5px;
+}
+
+.orientation:hover{
+	background: #87550D;
+	border: none;
 }
