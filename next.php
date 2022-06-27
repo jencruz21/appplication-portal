@@ -56,7 +56,6 @@ if (isset($_POST["submit"])) {
     // https://drive.google.com/file/d/1cNJSDWfnjf8pLSX96_rBtXeRMdKFtsPy/view
     sendEmail($email, $name, "Pre-Screening Form Link", $body);
     saveFormData($conn, $name, "Pre-screening", $email, $contactNo, $school, $branch, $course, $skills, $fow, $resume, $date);
-    updateApplicantsCount($conn, "1");
     unset($_SESSION["name"]);
     unset($_SESSION["email_address"]);
     unset($_SESSION["contact_no"]);

@@ -18,12 +18,6 @@
                         <img src="img/admin.png">
                     </a>
                 </li>
-                <!--<li>
-					<a href="report.html" class="report">
-					<img src="img/report.png">
-					</a>
-				</li>-->
-
                 <li>
                     <a href="logout.php" class="signout">
                         <img src="img/signout.png">
