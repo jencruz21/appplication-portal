@@ -13,22 +13,22 @@ $row = getApplicantById($conn, $id);
 
 if (isset($_POST["submit"])) {
 	$name = $_POST["name"];
-	$email = $_POST["email_address"];
+	$email = $_POST["email"];
 	$status = $_POST["status"];
 	$fow = $_POST["field_of_work"];
-	$contact_no = $_POST["contact_number"];
+	$contact_no = $_POST["contact_no"];
 	$school = $_POST["school"];
 	$branch = $_POST["branch"];
 	$course = $_POST["course"];
 	$skills = $_POST["skills"];
-	$resume = $_POST["gdrive_link"];
+	$resume = $_POST["resume"];
 	$id = $row["id"];
 
 	if (isFieldsEmpty($name, $email, $status, $contact_no, $school, $branch, $course, $skills, $fow, $resume)) {
 		header("location: " . $_SERVER['PHP_SELF'] . "?error=Please fill all the fields!");
 		exit();
 	} else {
-		updateApplicant($conn, $name, $status, $email, $contactNo, $school, $branch, $course, $skills, $fow, $resume, $id);
+		updateApplicant($conn, $name, $status, $email, $contact_no, $school, $branch, $course, $skills, $fow, $resume, $id);
 		header("location: applicant.php?id=" . $row["id"]);
 	}
 }
@@ -57,14 +57,14 @@ if (isset($_POST["submit"])) {
 				<h1>Applicant Details</h1>
 			</div>
 			<section class="main-table">
-				<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+				<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?id=" . $id; ?>">
 					<table class="table">
 						<thead>
 							<tr>
 								<th>NAME</th>
 								<th>EMAIL</th>
 								<th>STATUS</th>
-								<th>FIELD OF WORK</th>
+								<th>CONTACT NO.</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -84,6 +84,24 @@ if (isset($_POST["submit"])) {
 										<option value="Withdrawn">Withdrawn</option>
 									</select>
 								</td>
+								<td>
+									<input name="contact_no" type="text" id="name" placeholder="Email" style="text-align: center; width: 100%;" value="<?php echo $row["contact_no"]; ?>">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>FIELD OF WORK</th>
+								<th>TECHNICAL SKILLS</th>
+								<th>SCHOOL</th>
+								<th>BRANCH</th>
+								<th>COURSE</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
 								<td>
 									<select name="field_of_work" id="status">
 										<option value="">select</option>
@@ -106,20 +124,6 @@ if (isset($_POST["submit"])) {
 										<option value="Web & App Developers">Web & App Developers</option>
 									</select>
 								</td>
-							</tr>
-						</tbody>
-					</table>
-					<table class="table">
-						<thead>
-							<tr>
-								<th>TECHNICAL SKILLS</th>
-								<th>SCHOOL</th>
-								<th>BRANCH</th>
-								<th>COURSE</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
 								<td>
 									<input name="skills" type="text" id="name" placeholder="Technical Skills" style="text-align: center; width: 100%;" value="<?php echo $row["skills"]; ?>">
 								</td>

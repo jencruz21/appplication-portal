@@ -13,7 +13,7 @@ if (isset($_POST["submit"])) {
     $email = $_POST["email"];
     $name = $_POST["name"];
 
-    $subject = "Wait-listed Application";
+    $subject = "Waitlisted Application";
 
     $name = explode(" ", $name);
 

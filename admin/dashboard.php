@@ -44,21 +44,21 @@ $count = getPeopleCount($conn);
 							<img src="img/applicants.png">
 							<div class="texts">
 								<h3>Applicants</h3>
-								<span><?php echo $count["applicants"]; ?></span>
+								<span><?php echo getApplicantsCount($conn); ?></span>
 							</div>
 						</div>
 						<div class="roles">
 							<img src="img/moderators.png">
 							<div class="texts">
 								<h3>Moderators</h3>
-								<span><?php echo $count["moderators"]; ?></span>
+								<span><?php echo getModCount($conn); ?></span>
 							</div>
 						</div>
 						<div class="roles">
 							<img src="img/administrators.png">
 							<div class="texts">
 								<h3>Administrators</h3>
-								<span><?php echo $count["administrators"]; ?></span>
+								<span><?php echo getAdminsCount($conn); ?></span>
 							</div>
 						</div>
 					</div>
@@ -76,15 +76,15 @@ $count = getPeopleCount($conn);
 					<div class="card1">
 						<h3>Probation</h3>
 						<p>This Week</p>
-						<h1><?php echo $count["probation"]; ?></h1>
+						<h1><?php echo getProbationCount($conn); ?></h1>
 						<img src="img/approved.png">
 					</div>
 				</div>
 				<div class="cards">
 					<div class="card2">
-						<h3>Orientation</h3>
+						<h3>Pre-Screening</h3>
 						<p>This Week</p>
-						<h1><?php echo $count["orientation"]; ?></h1>
+						<h1><?php echo getPreScreeningCount($conn); ?></h1>
 						<img src="img/probation.png">
 					</div>
 				</div>
@@ -92,7 +92,7 @@ $count = getPeopleCount($conn);
 					<div class="card3">
 						<h3>Waitlisted</h3>
 						<p>This Week</p>
-						<h1><?php echo $count["waitlisted"]; ?></h1>
+						<h1><?php echo getWaitlistedCount($conn); ?></h1>
 						<img src="img/rejected.png">
 					</div>
 				</div>

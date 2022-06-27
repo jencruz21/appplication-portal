@@ -152,6 +152,7 @@ hr{
 	padding-top: 4px;
 	text-align: center;
 	border-radius: 5px;
+	cursor: pointer;
 }
 
 .probation:hover{
@@ -167,6 +168,7 @@ hr{
 	padding: 7px 45px;
 	border-radius: 10px;
 	border: none;
+	cursor: pointer;
 }
 
 .waitlisted:hover{
@@ -184,13 +186,13 @@ hr{
 	font-weight: 600;
 	padding: 7px 45px;
 	border-radius: 10px;
+	cursor: pointer;
 }
 
 
 .withdrawn:hover{
 	background: #CA9501;
 	border: none;
-	cursor: pointer;
 }
 
 .remind{
@@ -204,6 +206,7 @@ hr{
 	padding-top: 4px;
 	text-align: center;
 	border-radius: 5px;
+	cursor: pointer;
 }
 
 .remind:hover{
@@ -222,6 +225,7 @@ hr{
 	padding-top: 4px;
 	text-align: center;
 	border-radius: 5px;
+	cursor: pointer;
 }
 
 .orientation:hover{

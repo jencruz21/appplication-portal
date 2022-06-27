@@ -334,28 +334,28 @@ function getModCount($conn)
 // probation update
 function getProbationCount($conn)
 {
-    $query = "SELECT COUNT(role) FROM application_portal_admin WHERE role = 'Probation'";
+    $query = "SELECT COUNT(status) FROM application_portal WHERE status = 'Probation'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
-    return $row["COUNT(role)"];
+    return $row["COUNT(status)"];
 }
 
 // orientation update
-function updateOrientationCount($conn)
+function getPreScreeningCount($conn)
 {
-    $query = "SELECT COUNT(role) FROM application_portal_admin WHERE role = 'Orientation'";
+    $query = "SELECT COUNT(status) FROM application_portal WHERE status = 'Pre-screening'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
-    return $row["COUNT(role)"];
+    return $row["COUNT(status)"];
 }
 
 // waitlisted update
-function updateWaitlistedCount($conn)
+function getWaitlistedCount($conn)
 {
-    $query = "SELECT COUNT(role) FROM application_portal_admin WHERE role = 'Waitlisted'";
+    $query = "SELECT COUNT(status) FROM application_portal WHERE status = 'Waitlisted'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
-    return $row["COUNT(role)"];
+    return $row["COUNT(status)"];
 }
 
 // require "../../includes/db.php";

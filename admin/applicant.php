@@ -49,8 +49,9 @@ if (isset($_GET["id"])) {
 							<th>NAME</th>
 							<th>EMAIL</th>
 							<th>STATUS</th>
-							<th>FIELD OF WORK</th>
+							<th>CONTACT NO.</th>
 							<th>DATE APPLIED</th>
+							<th>MEETING SCHED</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -65,10 +66,13 @@ if (isset($_GET["id"])) {
 								<?php echo $row["status"]; ?>
 							</td>
 							<td>
-								<?php echo $row["field_of_work"]; ?>
+								<?php echo $row["contact_no"]; ?>
 							</td>
 							<td>
 								<?php echo date_format($dt, "Y/m/d"); ?>
+							</td>
+							<td>
+								<?php echo $row["meeting_sched"]; ?>
 							</td>
 						</tr>
 					</tbody>
@@ -76,6 +80,7 @@ if (isset($_GET["id"])) {
 				<table class="table">
 					<thead>
 						<tr>
+							<th>FIELD OF WORK</th>
 							<th>TECHNICAL SKILLS</th>
 							<th>SCHOOL</th>
 							<th>BRANCH</th>
@@ -84,6 +89,7 @@ if (isset($_GET["id"])) {
 					</thead>
 					<tbody>
 						<tr>
+							<td><?php echo $row["field_of_work"]; ?></td>
 							<td><?php echo $row["skills"]; ?></td>
 							<td><?php echo $row["school"]; ?></td>
 							<td><?php echo $row["branch"]; ?></td>
