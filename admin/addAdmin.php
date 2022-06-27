@@ -29,6 +29,7 @@ if (isset($_POST["submit"])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html>
@@ -47,62 +48,44 @@ if (isset($_POST["submit"])) {
 		<?php require "includes/navbar.php"; ?>
 
 		<section class="main">
-			<div class="main-top">
-				<h1>Admin Panel</h1>
-			</div>
-			<section class="adminFrm">
+			<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+				<div class="main-top">
+					<h1>Admin Panel</h1>
+				</div>
+				<section class="main-table">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>NAME</th>
+								<th>USERNAME</th>
+								<th>EMAIL</th>
+								<th>PASSWORD</th>
+								<th>ROLE</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<input name="name" type="text" id="name" placeholder="Full Name" style="width: 80%">
+								</td>
+								<td><input name="username" type="text" id="username" placeholder="Username" style="width: 80%"></td>
+								<td><input name="email" type="email" id="email" placeholder="Email" style="width: 80%"></td>
+								<td><input name="password" type="password" id="password" placeholder="Password" style="width: 80%"></td>
+								</td>
+								<td>
+									<select name="role" id="roles" style="width: 80%">
+										<option value="role">Role</option>
+										<option value="admin">Administrator</option>
+										<option value="moderator">Moderator</option>
+								</td>
+							</tr>
 
-				<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-					<div class="form1">
-
-						<h5>NAME</h5>
-
-						<input name="name" type="text" placeholder="Full Name" required>
-
-					</div>
-					<div class="form1">
-
-						<h5>USERNAME</h5>
-
-						<input name="username" type="text" placeholder="Username" required>
-
-					</div>
-
-					<div class="form1">
-
-						<h5>Password</h5>
-
-						<input name="password" type="password" placeholder="Password" required>
-
-					</div>
-
-					<div class="form1">
-
-						<h5>EMAIL</h5>
-
-						<input name="email" type="email" placeholder="Email" required>
-
-					</div>
-					<div class="form1">
-
-						<h5>ROLE</h5>
-
-						<select name="role" id="roles" style="width: 110%;">
-							<option>Select</option>
-							<option value="admin">Administrator</option>
-							<option value="moderator">Moderator</option>
-						</select>
-
-					</div>
-					<input name="submit" type="submit" class="save" style="text-align: center; width: 20%" value="ADD">
-				</form>
-				<?php if (isset($_GET["error"])) : ?>
-					<p style="color: red; margin-top: 20px; text-align: end;">
-						*Please fill all the fields!*
-					</p>
-				<?php endif; ?>
-			</section>
-
+						</tbody>
+					</table>
+				</section>
+				<input name="submit" type="submit" class="save" value="ADD">
+				<a class="cancel" href="admins.php">CANCEL</a>
+			</form>
 		</section>
 
 	</div>

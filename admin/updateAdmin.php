@@ -43,58 +43,50 @@ if (isset($_POST["submit"])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>MGHS-Edit Admin</title>
 	<link rel="icon" href="img/logo.png">
-	<link rel="stylesheet" href="css/style_edit-admin.css">
+	<link rel="stylesheet" href="css/style_edit-admin2.css">
 </head>
 
 <body>
 
 	<div class="container">
+
 		<?php require "includes/navbar.php"; ?>
 
 		<section class="main">
-			<div class="main-top">
-				<h1>Admin Panel</h1>
-			</div>
-			<section class="adminFrm">
+			<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?id=" . $id; ?>">
+				<div class="main-top">
+					<h1>Admin Panel</h1>
+				</div>
+				<section class="main-table">
+					<table class="table">
+						<thead>
+							<tr>
+								<th><a href="#">NAME</a></th>
+								<th><a href="#">USERNAME</a></th>
+								<th>EMAIL</th>
+								<th><a href="#">ROLE</a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input name="name" type="text" id="name" placeholder="Name" style="width: 80%" value="<?php echo $user["name"]; ?>""></td>
+								<td><input name=" username" type="text" id="username" placeholder="Username" style="width: 80%" value="<?php echo $user["username"]; ?>""></td>
+								<td><input name=" email" type="email" id="email" placeholder="Email" style="width: 80%" value="<?php echo $user["email"]; ?>""></td>
+								</td>
+								<td>
+									<select name=" role" id="roles" style="width: 80%">
+									<option value="select">Role</option>
+									<option value="admin">Administrator</option>
+									<option value="moderator">Moderator</option>
+								</td>
+							</tr>
 
-				<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-					<div class="form1">
-
-						<h5>NAME</h5>
-
-						<input name="name" type="text" placeholder="Name" value="<?php echo $user["name"]; ?>" required>
-
-					</div>
-					<div class="form1">
-
-						<h5>USERNAME</h5>
-
-						<input name="username" type="text" placeholder="Username" value="<?php echo $user["username"]; ?>" required>
-
-					</div>
-					<div class="form1">
-
-						<h5>EMAIL</h5>
-
-						<input name="email" type="email" placeholder="Email" value="<?php echo $user["email"]; ?>" required>
-
-
-					</div>
-					<div class="form1">
-
-						<h5>ROLE</h5>
-
-						<select name="role" id="roles" style="width: 110%;">
-							<option value="select">Select</option>
-							<option value="admin">Administrator</option>
-							<option value="moderator">Moderator</option>
-						</select>
-
-					</div>
-					<input name="submit" type="submit" class="save" style="text-align: center; width: 20%" value="SAVE">
-				</form>
-
-			</section>
+						</tbody>
+					</table>
+				</section>
+				<input name="submit" type="submit" class="save" value="SAVE">
+				<a class="cancel" href="admins.php">CANCEL</a>
+			</form>
 		</section>
 
 	</div>
