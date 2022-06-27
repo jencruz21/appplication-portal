@@ -187,16 +187,6 @@ function deleteApplicant($conn, $id)
     mysqli_stmt_execute($stmt);
 }
 
-// storing scheduled meeting
-
-// function saveSchedule($conn, $schedule, $id)
-// {
-//     $query = "UPDATE application_portal SET meeting_sched = ? WHERE id = ?";
-//     $stmt = mysqli_prepare($conn, $query);
-//     mysqli_stmt_bind_param($stmt, "ss", $schedule, $id);
-//     mysqli_stmt_execute($stmt);
-// }
-
 function fetchNumRows($conn, $tableName)
 {
     $query = "SELECT COUNT(id) FROM " . $tableName;

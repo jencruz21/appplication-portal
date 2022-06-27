@@ -8,7 +8,7 @@
  */
 
 // url: index.php?page="$param"&sortBy="$param"&query="$param"
-
+error_reporting(0);
 require "../includes/db.php";
 require "includes/functions.php";
 require_once "../includes/config.php";

@@ -1,5 +1,5 @@
 <?php 
-//error_reporting(0);
+error_reporting(0);
 require_once "includes/config.php";
 
 if(!isset($_GET["pass"]) && empty($_GET["pass"])) {

@@ -1,5 +1,5 @@
-<?php 
-
+<?php
+error_reporting(0);
 session_start();
 require "includes/functions.php";
 require "../includes/db.php";
