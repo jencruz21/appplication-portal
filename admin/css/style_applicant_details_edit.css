@@ -198,10 +198,6 @@ table thead tr{
 	cursor: pointer;
 }
 
-.save:hover{
-	background: #489E0A;
-	border: none;
-}
 
 .cancel{
 	float: right;
