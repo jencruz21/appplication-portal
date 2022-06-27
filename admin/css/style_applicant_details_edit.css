@@ -195,6 +195,7 @@ table thead tr{
 	padding: 7px 51px;
 	border-radius: 10px;
 	margin-right: 35px;
+	cursor: pointer;
 }
 
 .save:hover{

@@ -11,6 +11,8 @@ if (!isset($_SESSION["username"])) {
 
 $id = $_GET["id"];
 $row = getApplicantById($conn, $id);
+$date = $row["created_at"];
+$dt = new DateTime($date);
 
 if (isset($_POST["submit"])) {
 	$name = $_POST["name"];
@@ -66,6 +68,8 @@ if (isset($_POST["submit"])) {
 								<th>EMAIL</th>
 								<th>STATUS</th>
 								<th>CONTACT NO.</th>
+								<th>DATE APPLIED</th>
+								<th>MEETING SCHED</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -87,6 +91,12 @@ if (isset($_POST["submit"])) {
 								</td>
 								<td>
 									<input name="contact_no" type="text" id="name" placeholder="Email" style="text-align: center; width: 100%;" value="<?php echo $row["contact_no"]; ?>">
+								</td>
+								<td>
+									<?php echo date_format($dt, "Y/m/d"); ?>
+								</td>
+								<td>
+									<?php echo $row["meeting_sched"]; ?>
 								</td>
 							</tr>
 						</tbody>
@@ -149,7 +159,8 @@ if (isset($_POST["submit"])) {
 						</tbody>
 					</table>
 			</section>
-			<input name="submit" type="submit" class="save" value="SAVE">
+			<input name="submit" type="submit" class="save" value="UPDATE">
+			<a class="cancel" href="admins.php">CANCEL</a>
 			</form>
 		</section>
 
