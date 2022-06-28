@@ -98,9 +98,9 @@ $count = getPeopleCount($conn);
 				</div>
 				<div class="cards">
 					<div class="card4">
-						<h3 id="_month">June</h3>
-						<h4 id="_date">20</h4>
-						<h2 id="_year">2022</h2>
+						<h3 id="_month"></h3>
+						<h4 id="_date"></h4>
+						<h2 id="_year"></h2>
 						<img src="img/date.png">
 					</div>
 				</div>

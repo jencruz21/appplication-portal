@@ -137,7 +137,7 @@ if (isset($_POST["submit"])) {
                             <img src="images/chk.png">
                             <h2>SUCCESS</h2>
                             <p>Please check your email for your <br>confirmation link.</p>
-                            <input type="submit" name="submit" class="btn_modal" value="DONE">
+                            <input type="submit" name="submit" class="btn_modal" value="DONE" id="submit">
                         </div>
                     </div>
 

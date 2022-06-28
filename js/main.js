@@ -1,6 +1,9 @@
 const inputs = document.querySelectorAll(".input");
 const btn = document.getElementById("modalbtn");
 const modal = document.getElementById("modalbox");
+const submit = document.getElementById("submit");
+submit.disabled = true;
+submit.cursor = "none";
 
 function addcl(){
 	let parent = this.parentNode.parentNode;
@@ -23,6 +26,8 @@ inputs.forEach(input => {
 btn.addEventListener("click", function() {
 	modal.style.opacity = 1;
 	modal.style.visibility = "visible";
+	submit.disabled = false;
+	submit.cursor = "pointer";
 });
 
 
