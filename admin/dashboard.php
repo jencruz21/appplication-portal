@@ -36,7 +36,7 @@ $count = getPeopleCount($conn);
 			<div class="main">
 				<div class="dashboard">
 					<div class="title">
-						<h2>Welcome <?php echo $_SESSION["username"] ?>!</h2>
+						<h2>Welcome, <?php echo $_SESSION["username"] ?>!</h2>
 						<p>Be Goal Driven Today</p>
 					</div>
 					<div class="total">
