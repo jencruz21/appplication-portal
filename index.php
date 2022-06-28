@@ -1,8 +1,8 @@
-<?php 
+<?php
 error_reporting(0);
 require_once "includes/config.php";
 
-if(!isset($_GET["pass"]) && empty($_GET["pass"])) {
+if (!isset($_GET["pass"]) && empty($_GET["pass"])) {
     die();
 }
 
@@ -11,7 +11,7 @@ if ($_GET["pass"] != SECRET_STRING) {
 }
 
 if (isset($_POST["next"])) {
-    if (empty($_POST["name"]) || empty($_POST["email_address"]) ||empty($_POST["contact_no"]) || empty($_POST["course"])) {
+    if (empty($_POST["name"]) || empty($_POST["email_address"]) || empty($_POST["contact_no"]) || empty($_POST["course"])) {
         header("location: index.php?pass=1991652782&error=Please fill all the fields!");
     } else {
         $name = $_POST["name"];
@@ -35,51 +35,59 @@ if (isset($_POST["next"])) {
 
 ?>
 
-<?php require "includes/header.php"; ?>    
-    <section>
-        <div class="logo">
-            <img src="images/logo.png">
-        </div>
-        
-        <div class="contentBox">
-            <div class="formBox">
-                <h2>APPLICATION FORM</h2>
-                <form method="POST" >
-                    <input type="text" name="spam" style="display: none; visibility: hidden;">
-                    <div class="input-div one">
+<?php require "includes/header.php"; ?>
+<section>
+    <div class="logo">
+        <img src="images/logo.png">
+    </div>
+
+    <div class="contentBox">
+        <div class="formBox">
+            <h2>APPLICATION FORM</h2>
+            <form method="POST">
+                <input type="text" name="spam" style="display: none; visibility: hidden;">
+                <div class="input-div one">
                     <div class="div">
-           		   		<h5>FULL NAME</h5>
-           		   		<input type="text" class="input" name="name">
-           		    </div>
+                        <h5>FULL NAME</h5>
+                        <input type="text" class="input" name="name" value="<?php session_start();
+                                                                            if (isset($_SESSION["name"])) : echo $_SESSION["name"];
+                                                                            endif; ?>">
                     </div>
-                    <div class="input-div one">
+                </div>
+                <div class="input-div one">
                     <div class="div">
                         <h5>EMAIL</h5>
-           		   		<input type="email" class="input" name="email_address">
+                        <input type="email" class="input" name="email_address" value="<?php session_start();
+                                                                                        if (isset($_SESSION["email_address"])) : echo $_SESSION["email_address"];
+                                                                                        endif; ?>">
                     </div>
-                    </div>
-                    <div class="input-div one">
+                </div>
+                <div class="input-div one">
                     <div class="div">
-           		   		<h5>CONTACT NUMBER</h5>
-           		   		<input type="text" class="input" name="contact_no">
-           		    </div>
+                        <h5>CONTACT NUMBER</h5>
+                        <input type="text" class="input" name="contact_no" value="<?php session_start();
+                                                                                    if (isset($_SESSION["contact_no"])) : echo $_SESSION["contact_no"];
+                                                                                    endif; ?>">
                     </div>
-                    <div class="input-div one">
+                </div>
+                <div class="input-div one">
                     <div class="div">
-           		   		<h5>COURSE</h5>
-           		   		<input type="text" class="input" name="course">
-           		    </div>
+                        <h5>COURSE</h5>
+                        <input type="text" class="input" name="course" value="<?php session_start();
+                                                                                if (isset($_SESSION["course"])) : echo $_SESSION["course"];
+                                                                                endif; ?>">
                     </div>
-                    <button type="submit" name="next">NEXT</button>
-                    <?php if (isset($_GET["error"])) :?>
-                        <p style="color:red;">*<?php echo $_GET["error"]; ?>*</p>
-                    <?php endif;?>
-                </form>
-            </div>
+                </div>
+                <button type="submit" name="next">NEXT</button>
+                <?php if (isset($_GET["error"])) : ?>
+                    <p style="color:red;">*<?php echo $_GET["error"]; ?>*</p>
+                <?php endif; ?>
+            </form>
         </div>
-        
-        <div class="eclipse">
-            <img src="images/eclipse.png">
-        </div>
-    </section>
-    <?php require "includes/footer.php" ?>
+    </div>
+
+    <div class="eclipse">
+        <img src="images/eclipse.png">
+    </div>
+</section>
+<?php require "includes/footer.php" ?>

@@ -60,7 +60,6 @@ if (isset($_POST["submit"])) {
     unset($_SESSION["email_address"]);
     unset($_SESSION["contact_no"]);
     unset($_SESSION["course"]);
-    session_destroy();
     header("location: index.php?pass=1991652782");
 }
 

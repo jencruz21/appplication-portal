@@ -4,6 +4,7 @@ const modal = document.getElementById("modalbox");
 const submit = document.getElementById("submit");
 submit.disabled = true;
 submit.cursor = "none";
+submit.zIndex = -1;
 
 function addcl(){
 	let parent = this.parentNode.parentNode;
@@ -28,6 +29,7 @@ btn.addEventListener("click", function() {
 	modal.style.visibility = "visible";
 	submit.disabled = false;
 	submit.cursor = "pointer";
+	submit.zIndex = 1;
 });
 
 
