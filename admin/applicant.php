@@ -102,7 +102,7 @@ if (isset($_GET["id"])) {
 					<tbody>
 						<tr>
 							<td>Resume</td>
-							<td><a href="<?php echo $row["resume"]; ?>">GDrive link for the resume of <?php echo $row["name"]; ?></a></td>
+							<td><a href="<?php echo $row["resume"]; ?>" target="_blank">GDrive link for the resume of <?php echo $row["name"]; ?></a></td>
 						</tr>
 					</tbody>
 				</table>
