@@ -1,6 +1,5 @@
 const inputs = document.querySelectorAll(".input");
 const btn = document.getElementById("modalbtn");
-const modal = document.getElementById("modalbox");
 const submit = document.getElementById("submit");
 submit.disabled = true;
 submit.cursor = "none";
