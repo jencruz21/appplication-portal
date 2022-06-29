@@ -49,25 +49,37 @@ if (isset($_POST["next"])) {
                 <div class="input-div one">
                     <div class="div">
                         <h5>FULL NAME</h5>
-                        <input type="text" class="input" name="name">
+                        <input type="text" class="input" name="name" <?php session_start();
+                                                                        if (isset($_SESSION["name"])) : echo "value=\"" . $_SESSION["name"] . "\"";
+                                                                        else : echo "value=\"\"";
+                                                                        endif; ?>>
                     </div>
                 </div>
                 <div class="input-div one">
                     <div class="div">
                         <h5>EMAIL</h5>
-                        <input type="email" class="input" name="email_address">
+                        <input type="email" class="input" name="email_address" <?php session_start();
+                                                                                if (isset($_SESSION["email_address"])) : echo "value=\"" . $_SESSION["email_address"] . "\"";
+                                                                                else : echo "value=\"\"";
+                                                                                endif; ?>>
                     </div>
                 </div>
                 <div class="input-div one">
                     <div class="div">
                         <h5>CONTACT NUMBER</h5>
-                        <input type="text" class="input" name="contact_no">
+                        <input type="text" class="input" name="contact_no" <?php session_start();
+                                                                            if (isset($_SESSION["contact_no"])) : echo "value=\"" . $_SESSION["contact_no"] . "\"";
+                                                                            else : echo "value=\"\"";
+                                                                            endif; ?>>
                     </div>
                 </div>
                 <div class="input-div one">
                     <div class="div">
                         <h5>COURSE</h5>
-                        <input type="text" class="input" name="course">
+                        <input type="text" class="input" name="course" <?php session_start();
+                                                                        if (isset($_SESSION["course"])) : echo "value=\"" . $_SESSION["course"] . "\"";
+                                                                        else : echo "value=\"\"";
+                                                                        endif; ?>>
                     </div>
                 </div>
                 <button type="submit" name="next">NEXT</button>
