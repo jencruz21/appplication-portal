@@ -148,5 +148,5 @@ if (isset($_POST["submit"])) {
             <img src="images/eclipse.png">
         </div>
     </section>
-    <script type="text/javascript" src="js/next.js"></script>
+    <script type="text/javascript" src="js/modal.js"></script>
 <?php require "includes/footer.php" ?>
