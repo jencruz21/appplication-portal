@@ -9,8 +9,6 @@ if (!isset($_SESSION["username"])) {
 	die();
 }
 
-$count = getPeopleCount($conn);
-
 ?>
 
 <!DOCTYPE html>
