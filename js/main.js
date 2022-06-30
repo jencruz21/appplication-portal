@@ -17,5 +17,3 @@ inputs.forEach(input => {
 	input.addEventListener("blur", remcl);
 });
 
-
-

@@ -4,10 +4,23 @@ require "../../includes/db.php";
 require "email.php";
 require "functions.php";
 
-// name
-// course
-// date / time
-// link
+/**
+ * 
+ * This is the script after submitting the withdrawn form 
+ * it takes an 
+ * @param id
+ * @param email
+ * @param name
+ * @param subject
+ * 
+ * from the form submitted in emailApplicant
+ * this script also reads the content in templates/html-template/Withdrawn Application.html
+ * replaces the {{ keyword }} with the given data from the @var details array
+ * this scripts also calls the function from the admin/email.php
+ * and setToWithdrawn is called from the admin/includes/function.php 
+ * they will also be redirected to applicant.php
+ * 
+ */
 
 if (isset($_POST["submit"])) {
     $id = $_POST["id"];

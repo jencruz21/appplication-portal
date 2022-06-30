@@ -6,10 +6,14 @@ require "includes/functions.php";
 require_once "includes/config.php";
 require "admin/includes/functions.php";
 
+// Continuation of index.php
+
+// if pass is empty and not set, page will die (to avoid spam) 
 if(!isset($_GET["pass"]) && empty($_GET["pass"])) {
     die();
 }
 
+// if pass is not equals to secret_string 
 if ($_GET["pass"] != SECRET_STRING) {
     die();
 }

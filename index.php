@@ -1,11 +1,15 @@
 <?php
+
+// main page of the app
 error_reporting(0);
 require_once "includes/config.php";
 
+// if pass is empty and not set, page will die (to avoid spam) 
 if (!isset($_GET["pass"]) && empty($_GET["pass"])) {
     die();
 }
 
+// if pass is not equals to secret_string 
 if ($_GET["pass"] != SECRET_STRING) {
     die();
 }

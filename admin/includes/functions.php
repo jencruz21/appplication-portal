@@ -1,5 +1,6 @@
 <?php
 
+// This sanitizes the input of the
 function sanitizeInputs($conn, $input)
 {
     $input = trim($input);
@@ -8,6 +9,12 @@ function sanitizeInputs($conn, $input)
 }
 
 //login functions
+
+/**
+ * 
+ * This function takes @param password to hash the password with SHA-512 algorithm
+ * @return password (hashed password)
+ */
 function hashPassword($password)
 {
     $SHA_512 = "$6$";
@@ -19,6 +26,14 @@ function hashPassword($password)
 
     return $password;
 }
+
+/**
+ * 
+ * This verifies the password and takes 2 params @param password and @param dbPassword
+ * the password is the raw password taken from the login function and the dbPassword is the hashed password that is crypted
+ * we will crypt the @param password and compare if both are equals to @param dbPassword.
+ * if both are same we @return true else @return false
+ */
 
 function verifyPassword($password, $dbPassword)
 {
@@ -34,6 +49,12 @@ function verifyPassword($password, $dbPassword)
     }
 }
 
+/**
+ * 
+ * This is the login function this only verifies if the selected password is selected
+ * it takes 3 params @param conn (database connection), @param username, @param password
+ * if the number of rows is greater than 1 @return true else @return false 
+ */
 function login($conn, $username, $password)
 {
     $query = "SELECT username, password, role FROM application_portal_admin WHERE username = ?";
@@ -54,6 +75,18 @@ function login($conn, $username, $password)
     }
 }
 
+/**
+ * 
+ * this function authorize the user it takes 4 params
+ * @param conn
+ * @param username
+ * @param password
+ * @param role
+ * 
+ * this authorize the user with their specific role and logs in the user
+ * if the row that comes from the database is equals to the inputted row then @return true
+ * else @return false
+ */
 function authorizeUser($conn, $username, $password, $role)
 {
     $query = "SELECT role FROM application_portal_admin WHERE username = ?";
@@ -74,6 +107,14 @@ function authorizeUser($conn, $username, $password, $role)
 
 // admin/moderator dashboard functions
 
+/**
+ * 
+ * this fetches the applicant with their identified id
+ * takes @param conn for database connection
+ * @param id for the user id
+ * 
+ * @return row or the result of the user that comes from the database
+ */
 function getApplicantById($conn, $id)
 {
     $query = "SELECT * FROM application_portal WHERE id = ?";
@@ -86,6 +127,12 @@ function getApplicantById($conn, $id)
     return $row;
 }
 
+/**
+ * 
+ * checks if the fields are empty 
+ * if empty @return true
+ * else @return false
+ */
 function isFieldsEmpty($name, $email, $contact_no, $school, $branch, $course, $skills, $fow, $resume)
 {
     if (
@@ -105,6 +152,26 @@ function isFieldsEmpty($name, $email, $contact_no, $school, $branch, $course, $s
     }
 }
 
+/**
+ * 
+ * this updates the details of the applicant
+ * receives the params
+ * 
+ * @param conn - for database connection
+ * @param name
+ * @param status
+ * @param email
+ * @param contactNo
+ * @param school
+ * @param branch
+ * @param course
+ * @param skills
+ * @param fow or field_of_work
+ * @param resume
+ * @param id - id of the applicant
+ * 
+ * this @return void
+ */
 function updateApplicant(
     $conn,
     $name,
@@ -143,6 +210,19 @@ function updateApplicant(
 # update status applicant
 
 // probation
+/**
+ * 
+ * this updates the meeting schedule of the applicant
+ * and sets their status to probation
+ * receives the params
+ * 
+ * @param conn - for database connection
+ * @param status
+ * @param id - id of the applicant
+ * @param dateTimeString - the date and time concatenated string
+ * 
+ * this @return void
+ */
 function setToProbation($conn, $id, $dateTimeString)
 {
     $query = "UPDATE application_portal SET status = 'Probation', meeting_sched = ? WHERE id = ?";
@@ -152,6 +232,16 @@ function setToProbation($conn, $id, $dateTimeString)
 }
 
 // white listed
+/**
+ * 
+ * this updates the status to waitlisted
+ * receives the params
+ * 
+ * @param conn - for database connection
+ * @param id - id of the applicant
+ * 
+ * this @return void
+ */
 function setToWaitListed($conn, $id)
 {
     $query = "UPDATE application_portal SET status = 'Waitlisted' WHERE id = ?";
@@ -161,6 +251,16 @@ function setToWaitListed($conn, $id)
 }
 
 //withdrawn
+/**
+ * 
+ * this updates the status to withdrawn
+ * receives the params
+ * 
+ * @param conn - for database connection
+ * @param id - id of the applicant
+ * 
+ * this @return void
+ */
 function setToWithdrawn($conn, $id)
 {
     $query = "UPDATE application_portal SET status = 'Withdrawn' WHERE id = ?";
@@ -170,6 +270,19 @@ function setToWithdrawn($conn, $id)
 }
 
 // orientation
+/**
+ * 
+ * this updates the meeting schedule of the applicant
+ * and sets their status to orientation
+ * receives the params
+ * 
+ * @param conn - for database connection
+ * @param status
+ * @param id - id of the applicant
+ * @param dateTimeString - the date and time concatenated string
+ * 
+ * this @return void
+ */
 function setToOrientation($conn, $id, $dateTimeString)
 {
     $query = "UPDATE application_portal SET status = 'Orientation', meeting_sched = ? WHERE id = ?";
@@ -178,7 +291,39 @@ function setToOrientation($conn, $id, $dateTimeString)
     mysqli_stmt_execute($stmt);
 }
 
+// Follow-Up
+/**
+ * 
+ * this updates the meeting schedule of the applicant
+ * and sets their status to follow-up
+ * receives the params
+ * 
+ * @param conn - for database connection
+ * @param status
+ * @param id - id of the applicant
+ * @param dateTimeString - the date and time concatenated string
+ * 
+ * this @return void
+ */
+function remindApplicant($conn, $id, $dateTimeString)
+{
+    $query = "UPDATE application_portal SET status = 'Follow-up', meeting_sched = ? WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "ss", $dateTimeString, $id);
+    mysqli_stmt_execute($stmt);
+}
+
+
 # delete applicant
+/**
+ * 
+ * deletes the applicant based on their id
+ * receives 2 params
+ * @param conn - for the database connection
+ * @param id - if of the applicant
+ * 
+ * @return void
+ */
 function deleteApplicant($conn, $id)
 {
     $query = "DELETE FROM application_portal WHERE id = ?";
@@ -187,6 +332,15 @@ function deleteApplicant($conn, $id)
     mysqli_stmt_execute($stmt);
 }
 
+/**
+ *
+ * fetches the number of rows depends on the tableName
+ * receives 2 params
+ * @param conn - for database connection
+ * @param tableName - table name
+ * 
+ * @return num_rows - the count of all rows
+ */
 function fetchNumRows($conn, $tableName)
 {
     $query = "SELECT COUNT(id) FROM " . $tableName;
@@ -195,7 +349,19 @@ function fetchNumRows($conn, $tableName)
     return $numRows["COUNT(id)"];
 }
 
-// fetch the paginated results and its ordered by each column name in ascending order
+/**
+ * 
+ * fetch the paginated results and its ordered by each column name in ascending order 
+ * receives 5 params
+ * 
+ * @param conn - database connection
+ * @param tableName
+ * @param resultPerPage - the results per page
+ * @param offset - the offset of the page
+ * @param colName - url params column name
+ * 
+ * @return paginatedResult
+ */
 function fetchPaginatedResult($conn, $tableName, $resultsPerPage, $offset, $colName)
 {
     $query = "SELECT * FROM " . $tableName . " ORDER BY " . $colName . " ASC LIMIT " . $resultsPerPage . " OFFSET " . $offset;
@@ -203,6 +369,20 @@ function fetchPaginatedResult($conn, $tableName, $resultsPerPage, $offset, $colN
     return $paginatedResult;
 }
 
+/**
+ * 
+ * fetch the paginated results and its ordered by each column name in ascending order together with search query in the applicant panel
+ * receives 6 params
+ * 
+ * @param conn - database connection
+ * @param tableName
+ * @param resultPerPage - the results per page
+ * @param offset - the offset of the page
+ * @param colName - url params column name
+ * @param param - the search query url param
+ * 
+ * @return paginatedSearchResult
+ */
 function fetchPaginatedSearchResult($conn, $tableName, $resultsPerPage, $offset, $colName, $param)
 {
     $param = "'%" . $param . "%'";
@@ -215,6 +395,20 @@ function fetchPaginatedSearchResult($conn, $tableName, $resultsPerPage, $offset,
     return $paginatedSearchResult;
 }
 
+/**
+ * 
+ * fetch the paginated results and its ordered by each column name in ascending order together with the search query in the admin panel
+ * receives 6 params
+ * 
+ * @param conn - database connection
+ * @param tableName
+ * @param resultPerPage - the results per page
+ * @param offset - the offset of the page
+ * @param colName - url params column name
+ * @param param - the search query url param
+ * 
+ * @return paginatedResult
+ */
 function fetchPaginatedAdminsSearchResult($conn, $tableName, $resultsPerPage, $offset, $colName, $param)
 {
     $param = "'%" . $param . "%'";
@@ -230,6 +424,20 @@ function fetchPaginatedAdminsSearchResult($conn, $tableName, $resultsPerPage, $o
 // admin role
 
 # add admin/moderator
+/**
+ * 
+ * saves a new admin user into the database together with the date when the user is created
+ * receives 6 params
+ * 
+ * @param conn
+ * @param name
+ * @param email
+ * @param username
+ * @param password
+ * @param role
+ * 
+ * @return void
+ */
 function saveUser($conn, $name, $email, $username, $password, $role)
 {
     $date = date("Y/m/d H:i:s");
@@ -241,6 +449,20 @@ function saveUser($conn, $name, $email, $username, $password, $role)
 }
 
 # update moderator/admin
+/**
+ * 
+ * updates the admin based on their id 
+ * receives 6 params
+ * 
+ * @param conn
+ * @param name
+ * @param email
+ * @param username
+ * @param role
+ * @param id
+ * 
+ * @return void
+ */
 function updateUser($conn, $name, $email, $username, $role, $id)
 {
     $query = "UPDATE application_portal_admin SET name = ?, email = ?, username = ?, role = ? WHERE id = ?";
@@ -251,6 +473,15 @@ function updateUser($conn, $name, $email, $username, $role, $id)
 }
 
 # delete admin/moderator
+/**
+ * 
+ * deletes the user based on their id
+ * 
+ * @param conn
+ * @param id
+ * 
+ * @return void
+ */
 function deleteUser($conn, $id)
 {
     $query = "DELETE FROM application_portal_admin WHERE id = ?";
@@ -260,6 +491,15 @@ function deleteUser($conn, $id)
 }
 
 # fetch all admin/moderator
+/**
+ * 
+ * fetches all the users or admins/moderators from the database
+ * 
+ * @param conn
+ * 
+ * returns an associative array of users
+ * @return rows
+ */
 function getUsers($conn)
 {
     $query = "SELECT * FROM application_portal_admin ORDER BY created_at ASC";
@@ -272,6 +512,16 @@ function getUsers($conn)
 }
 
 # fetch moderator by id
+/**
+ * 
+ * fetches the user by id and return a row of the applicant's details
+ * receives two params
+ * 
+ * @param conn
+ * @param id
+ * 
+ * @return row
+ */
 function getUserById($conn, $id)
 {
     $query = "SELECT * FROM application_portal_admin WHERE id = ?";
@@ -286,16 +536,14 @@ function getUserById($conn, $id)
 
 // fetch and update the value in dashboard
 
-// fetch data from people_count
-function getPeopleCount($conn)
-{
-    $query = "SELECT * FROM people_count WHERE id = 1";
-    $result = mysqli_query($conn, $query);
-    $result = mysqli_fetch_assoc($result);
-    return $result;
-}
-
-// applicants update
+/**
+ * 
+ * fetches the total count of applicant in the application_portal
+ * 
+ * @param conn
+ * 
+ * @return row - COUNT(id)
+ */
 function getApplicantsCount($conn) {
     $query = "SELECT COUNT(id) FROM application_portal";
     $result = mysqli_query($conn, $query);
@@ -303,7 +551,14 @@ function getApplicantsCount($conn) {
     return $row["COUNT(id)"];
 }
 
-// admins update
+/**
+ * 
+ * fetches the total count of admin in the application_portal_admin
+ * 
+ * @param conn
+ * 
+ * @return row - COUNT(role)
+ */
 function getAdminsCount($conn)
 {
     $query = "SELECT COUNT(role) FROM application_portal_admin WHERE role = 'admin'";
@@ -312,7 +567,14 @@ function getAdminsCount($conn)
     return $row["COUNT(role)"];
 }
 
-// moderator update
+/**
+ * 
+ * get the total count of moderator in the application_portal_admin
+ * 
+ * @param conn
+ * 
+ * @return row - COUNT(role)
+ */
 function getModCount($conn)
 {
     $query = "SELECT COUNT(role) FROM application_portal_admin WHERE role = 'moderator'";
@@ -321,7 +583,14 @@ function getModCount($conn)
     return $row["COUNT(role)"];
 }
 
-// probation update
+/**
+ * 
+ * get the total count of applicant with the status of probation in the application_portal
+ * 
+ * @param conn
+ * 
+ * @return row - COUNT(status)
+ */
 function getProbationCount($conn)
 {
     $query = "SELECT COUNT(status) FROM application_portal WHERE status = 'Probation'";
@@ -330,7 +599,14 @@ function getProbationCount($conn)
     return $row["COUNT(status)"];
 }
 
-// orientation update
+/**
+ * 
+ * get the total count of applicant with the status of orientation in the application_portal
+ * 
+ * @param conn
+ * 
+ * @return row - COUNT(status)
+ */
 function getPreScreeningCount($conn)
 {
     $query = "SELECT COUNT(status) FROM application_portal WHERE status = 'Pre-screening'";
@@ -339,7 +615,14 @@ function getPreScreeningCount($conn)
     return $row["COUNT(status)"];
 }
 
-// waitlisted update
+/**
+ * 
+ * get the total count of applicant with the status of waitlisted in the application_portal
+ * 
+ * @param conn
+ * 
+ * @return row - COUNT(status)
+ */
 function getWaitlistedCount($conn)
 {
     $query = "SELECT COUNT(status) FROM application_portal WHERE status = 'Waitlisted'";

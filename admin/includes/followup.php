@@ -3,6 +3,26 @@ require "../../includes/db.php";
 require "email.php";
 require "functions.php";
 
+
+/**
+ * This is the script after submitting the orientation form just to follow up the details and update the meeting time for the orientation
+ * it takes an 
+ * 
+ * @param id - url params
+ * @param email
+ * @param name
+ * @param course
+ * @param date - the scheduled date
+ * @param time - the scheduled time
+ * 
+ * from the form submitted in emailApplicant.php
+ * this script also reads the content in templates/html-template/Orientation Reminder.html
+ * replaces the {{ keyword }} with the given data from the @var details array
+ * this scripts also calls the function from the admin/includes/email.php
+ * and setToProbation function is called from the admin/includes/function.php 
+ * they will also be redirected to applicant.php
+ */
+
 if (isset($_POST["submit"])) {
 
     if (empty($_POST["date"]) || empty($_POST["time"])) {
@@ -35,6 +55,6 @@ if (isset($_POST["submit"])) {
     // name, email, subject, body
     sendEmail($email, $name[0], $subject, $body);
 
-    setToOrientation($conn, $id, $dateTimeString);
+    remindApplicant($conn, $id, $dateTimeString);
     header("location: ../applicant.php?id=" . $id);
 }

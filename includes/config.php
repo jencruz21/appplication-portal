@@ -1,8 +1,13 @@
 <?php
 
+// The configuration for the email credentials
 define("EMAIL_UN", "mghs.application.portal@gmail.com");
 define("EMAIL_PWD", "udtgypfyyywqggqb");
+
+// secret string for the form
 define("SECRET_STRING", "1991652782");
+
+// results per page
 define("RESULT_PER_PAGE", 10);
 
 // DB Credentials

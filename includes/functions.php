@@ -1,5 +1,6 @@
 <?php
 
+    // this sanitizes the data although i'm using prepared statements you can clean the codebase
     function sanitizeData($conn, $data) {
         $data = trim($data);
         $data = mysqli_real_escape_string($conn, $data);
@@ -7,6 +8,7 @@
     }
 
     // prepared statements
+    // this inserts all the data from the form
     function saveFormData(
                         $conn,
                         $name,

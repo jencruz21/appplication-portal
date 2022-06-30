@@ -8,6 +8,7 @@ require_once "config.php";
 
 include "vendor/autoload.php";
 
+// sends an email and accepts email, name of the receipient, the subject, and the body of the email
 function sendEmail($email, $name, $subject, $body) {
     $mail = new PHPMailer(true);
 
@@ -18,6 +19,7 @@ function sendEmail($email, $name, $subject, $body) {
         $mail->Port = 587;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = "tls";
+        // enable this if you want to see what is happening when you send an email to the receipient
         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
         $mail->Username = EMAIL_UN;
@@ -34,8 +36,4 @@ function sendEmail($email, $name, $subject, $body) {
     } catch(Exception $e) {
         echo $e->errorMessage();
     }
-}
-
-function sendAttachments($email, $name, $subject, $body, ...$attachments) {
-    
 }

@@ -3,11 +3,24 @@ require "../../includes/db.php";
 require "email.php";
 require "functions.php";
 
-// name
-// course
-// date / time
-// link
-
+/**
+ * This is the script after submitting the probation form 
+ * it takes an 
+ * 
+ * @param id - url params
+ * @param email
+ * @param name
+ * @param course
+ * @param date - the scheduled date
+ * @param time - the scheduled time
+ * 
+ * from the form submitted in emailApplicant.php
+ * this script also reads the content in templates/html-template/Set to Probation.html
+ * replaces the {{ keyword }} with the given data from the @var details array
+ * this scripts also calls the function from the admin/email.php
+ * and setToProbation function is called from the admin/includes/function.php 
+ * they will also be redirected to applicant.php
+ */
 if (isset($_POST["submit"])) {
 
     if (empty($_POST["date"]) || empty($_POST["time"])) {
@@ -30,7 +43,7 @@ if (isset($_POST["submit"])) {
     $details["course"] = $course;
     $details["date"] = $date;
     $details["time"] = $time;
-    $details["link"] = "https://meet.google.com/ron-htvc-zzm";
+    $details["link"] = "https://meet.google.com/swd-nrcm-fzm";
 
     $body = file_get_contents("../../templates/html-template/Set to Probation.html");
 
