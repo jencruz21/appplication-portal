@@ -1,4 +1,4 @@
-<?php 
+<?php
 error_reporting(0);
 require "includes/db.php";
 require "includes/email.php";
@@ -9,7 +9,7 @@ require "admin/includes/functions.php";
 // Continuation of index.php
 
 // if pass is empty and not set, page will die (to avoid spam) 
-if(!isset($_GET["pass"]) && empty($_GET["pass"])) {
+if (!isset($_GET["pass"]) && empty($_GET["pass"])) {
     die();
 }
 
@@ -33,12 +33,12 @@ if (isset($_POST["submit"])) {
 
     if (empty($_POST["school"]) || empty($_POST["school"]) || empty($_POST["school"]) || empty($_POST["school"]) || empty($_POST["school"])) {
         header("location: " . $_SERVER['PHP_SELF'] . "?error=Please fill all the fields!");
-    } 
+    }
 
     if (isset($_POST["spam"]) && !empty($_POST["spam"])) {
         die();
     }
-    
+
     $date = date("Y/m/d");
     $newName = explode(" ", $name);
     $details = array();
@@ -70,43 +70,44 @@ if (isset($_POST["submit"])) {
 ?>
 <?php require "includes/header.php" ?>
 
-    <section>
-        <div class="logo" onclick="location.href='index.php?pass=1991652782'">
-            <img src="images/back.png">
-        </div>
-        
-        <div class="contentBox">
-            <div class="formBox">
-                <h2>APPLICATION FORM</h2>
-                <form method="POST">
-                    <div class="input-div one">
+<section>
+    <div class="logo" onclick="location.href='index.php?pass=1991652782'">
+        <img src="images/back.png">
+    </div>
+
+    <div class="contentBox">
+        <div class="formBox">
+            <h2>APPLICATION FORM</h2>
+            <form method="POST">
+                <input type="text" name="spam" style="display: none; visibility: hidden;">
+                <div class="input-div one">
                     <div class="div">
-           		   		<h5>SCHOOL</h5>
-           		   		<input type="text" class="input" name="school">
-           		    </div>
+                        <h5>SCHOOL</h5>
+                        <input type="text" class="input" name="school">
                     </div>
-                    <div class="input-div one">
+                </div>
+                <div class="input-div one">
                     <div class="div">
                         <h5>BRANCH</h5>
-           		   		<input type="text" class="input" name="branch">
+                        <input type="text" class="input" name="branch">
                     </div>
-                    </div>
-                    <div class="input-div one">
+                </div>
+                <div class="input-div one">
                     <div class="div">
-           		   		<h5>TECHNICAL SKILLS</h5>
-           		   		<input type="text" class="input" name="technical_skills">
-           		    </div>
+                        <h5>TECHNICAL SKILLS</h5>
+                        <input type="text" class="input" name="technical_skills">
                     </div>
-                    <div class="input-div one">
+                </div>
+                <div class="input-div one">
                     <div class="div">
-           		   		<h5>CV / RESUME (GDRIVE LINK)</h5>
-           		   		<input type="text" class="input" name="resume">
-           		    </div>
+                        <h5>CV / RESUME (GDRIVE LINK)</h5>
+                        <input type="text" class="input" name="resume">
                     </div>
-                    <div class="input-div one">
+                </div>
+                <div class="input-div one">
                     <div class="div">
                         <label for="area"></label>
-           		   		<select id="area" name="field_of_work">
+                        <select id="area" name="field_of_work">
                             <option value="area">AREA OF FIELD APPLYING</option>
                             <option value="Advertising">Advertising</option>
                             <option value="Broadcasting">Broadcasting</option>
@@ -124,33 +125,33 @@ if (isset($_POST["submit"])) {
                             <option value="Nutrition & Food Technology">Nutrition & Food Technology</option>
                             <option value="Office Administration">Office Administration</option>
                             <option value="Public Relations">Public Relations</option>
-                            <option value="Web & App Developers">Web & App Developers</option>                           
+                            <option value="Web & App Developers">Web & App Developers</option>
                         </select>
-           		    </div>
                     </div>
+                </div>
 
-                    <p class="btn" style="cursor: pointer" id="modalbtn">SUBMIT</p>
+                <p class="btn" style="cursor: pointer" id="modalbtn">SUBMIT</p>
 
-                    <?php if (isset($_GET["error"])) :?>
-                        <p style="color:red;">*<?php echo $_GET["error"]; ?>*</p>
-                    <?php endif;?>
+                <?php if (isset($_GET["error"])) : ?>
+                    <p style="color:red;">*<?php echo $_GET["error"]; ?>*</p>
+                <?php endif; ?>
 
-                    <div id="modalbox" class="modal">
-                        <div class="popup">
-                            <img src="images/chk.png">
-                            <h2>SUCCESS</h2>
-                            <p>Please check your email for your <br>confirmation link.</p>
-                            <input type="submit" name="submit" class="btn_modal" value="DONE" id="submit">
-                        </div>
+                <div id="modalbox" class="modal">
+                    <div class="popup">
+                        <img src="images/chk.png">
+                        <h2>SUCCESS</h2>
+                        <p>Please check your email for your <br>confirmation link.</p>
+                        <input type="submit" name="submit" class="btn_modal" value="DONE" id="submit">
                     </div>
+                </div>
 
-                </form>
-            </div>
+            </form>
         </div>
-        
-        <div class="eclipse">
-            <img src="images/eclipse.png">
-        </div>
-    </section>
-    <script type="text/javascript" src="js/modal.js"></script>
+    </div>
+
+    <div class="eclipse">
+        <img src="images/eclipse.png">
+    </div>
+</section>
+<script type="text/javascript" src="js/modal.js"></script>
 <?php require "includes/footer.php" ?>

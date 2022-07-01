@@ -26,7 +26,8 @@ require "functions.php";
 if (isset($_POST["submit"])) {
 
     if (empty($_POST["date"]) || empty($_POST["time"])) {
-        header("location: ../applicant.php?id=" . $id . "&error=Please fill all fields");
+        header("location: ../emailApplicant.php?id=" . $id . "&orientation-error=Please fill all fields");
+        die();
     }
 
     $id = $_POST["id"];

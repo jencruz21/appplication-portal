@@ -59,6 +59,9 @@ if (isset($_GET["id"])) {
 							<input name="submit" type="submit" class="probation" value="Probation">
 						</div>
 					</form>
+					<?php if (isset($_GET["probation-error"])) : ?>
+						<p style="color: red;"><?php echo $_GET["probation-error"]; ?></p>
+					<?php endif; ?>
 				</div>
 				<div class="cards">
 					<form method="POST" action="includes/orientation.php">
@@ -78,6 +81,9 @@ if (isset($_GET["id"])) {
 							<input name="submit" type="submit" class="orientation" value="Orientation">
 						</div>
 					</form>
+					<?php if (isset($_GET["orientation-error"])) : ?>
+						<p style="color: red;"><?php echo $_GET["orientation-error"]; ?></p>
+					<?php endif; ?>
 				</div>
 				<div class="cards">
 					<form method="POST" action="includes/followup.php">
@@ -97,6 +103,9 @@ if (isset($_GET["id"])) {
 							<input name="submit" type="submit" class="remind" value="Remind">
 						</div>
 					</form>
+					<?php if (isset($_GET["followup-error"])) : ?>
+						<p style="color: red;"><?php echo $_GET["followup-error"]; ?></p>
+					<?php endif; ?>
 				</div>
 			</div>
 
