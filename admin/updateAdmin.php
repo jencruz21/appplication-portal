@@ -44,7 +44,7 @@ if (isset($_POST["submit"])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>MGHS-Edit Admin</title>
 	<link rel="icon" href="img/logo.png">
-	<link rel="stylesheet" href="css/style_edit-admin2.css">
+	<link rel="stylesheet" href="css/style_edit-admin.css">
 </head>
 
 <body>
