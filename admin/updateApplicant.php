@@ -160,7 +160,7 @@ if (isset($_POST["submit"])) {
 					</table>
 			</section>
 			<input name="submit" type="submit" class="save" value="UPDATE">
-			<a class="cancel" href="admins.php">CANCEL</a>
+			<a class="cancel" href="index.php">CANCEL</a>
 			</form>
 		</section>
 
