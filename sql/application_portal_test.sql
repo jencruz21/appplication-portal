@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS sql6497392.application_portal (
+CREATE TABLE IF NOT EXISTS application_portal (
 	id INT AUTO_INCREMENT,
 	name VARCHAR(128) NOT NULL,
 	status VARCHAR(128) NOT NULL,
@@ -13,8 +13,7 @@ CREATE TABLE IF NOT EXISTS sql6497392.application_portal (
 	meeting_sched TIMESTAMP NOT NULL,
 	PRIMARY KEY(id)
 ) ENGINE = INNODB;
-
-CREATE TABLE IF NOT EXISTS sql6497392.application_portal_admin (
+CREATE TABLE IF NOT EXISTS application_portal_admin (
 	id INT AUTO_INCREMENT,
 	name VARCHAR(128) NOT NULL,
 	email VARCHAR(256) NOT NULL,

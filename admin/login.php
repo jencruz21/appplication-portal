@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 require "includes/functions.php";
 require "../includes/db.php";
 
@@ -46,7 +46,7 @@ if (isset($_POST["submit"])) {
             <div class="formBox">
                 <img src="img/login/main.png">
                 <h2>Sign in</h2>
-                <form method="POST" >
+                <form method="POST">
                     <div class="inputBox">
                         <input type="text" placeholder="Username" name="username">
                     </div>

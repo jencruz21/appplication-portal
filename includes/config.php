@@ -11,7 +11,7 @@ define("SECRET_STRING", "1991652782");
 define("RESULT_PER_PAGE", 10);
 
 // DB Credentials
-define("DB_HOST", "remotemysql.com");
-define("DB_USER", "9zlSnVBorN");
-define('DB_PWD', "TB7jEOOij0");
-define('DB', "9zlSnVBorN");
+define("DB_HOST", "185.27.134.10");
+define("DB_USER", "epiz_32144892");
+define('DB_PWD', "gsJj3FUQFOTh");
+define('DB', "epiz_32144892_mghs_application_portal");

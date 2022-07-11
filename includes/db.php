@@ -12,5 +12,5 @@ $conn = mysqli_connect(DB_HOST, DB_USER, DB_PWD, DB);
 
 //If connection is unsuccessful then we print the error
 if (!$conn) {
-    die("Connection unsuccessful " . mysqli_error());
+    die("Connection unsuccessful");
 }
