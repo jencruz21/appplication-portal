@@ -1,8 +1,8 @@
 <?php
 
 // The configuration for the email credentials
-define("EMAIL_UN", "mghs.application.portal@gmail.com");
-define("EMAIL_PWD", "udtgypfyyywqggqb");
+define("EMAIL_UN", "mghsconsultancy@gmail.com");
+define("EMAIL_PWD", "ytxoyuzeqolnjbyc");
 
 // secret string for the form
 define("SECRET_STRING", "1991652782");
