@@ -544,7 +544,8 @@ function getUserById($conn, $id)
  * 
  * @return row - COUNT(id)
  */
-function getApplicantsCount($conn) {
+function getApplicantsCount($conn)
+{
     $query = "SELECT COUNT(id) FROM application_portal";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
@@ -630,8 +631,3 @@ function getWaitlistedCount($conn)
     $row = mysqli_fetch_assoc($result);
     return $row["COUNT(status)"];
 }
-
-// require "../../includes/db.php";
-// // name, email, username, password, role
-
-// saveUser($conn, "Application Administrator", "mghs.application.portal@gmail.com", "Administrator", "mghs_application_portal12345678", "admin");

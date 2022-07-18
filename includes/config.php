@@ -11,7 +11,7 @@ define("SECRET_STRING", "1991652782");
 define("RESULT_PER_PAGE", 10);
 
 // DB Credentials
-define("DB_HOST", "sql309.epizy.com");
-define("DB_USER", "epiz_32144892");
-define('DB_PWD', "gsJj3FUQFOTh");
-define('DB', "epiz_32144892_mghs_application_portal");
+define("DB_HOST", "localhost");
+define("DB_USER", "root");
+define('DB_PWD', "");
+define('DB', "mghs_application_portal");

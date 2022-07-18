@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS mghs_application_portal;
+
 CREATE TABLE IF NOT EXISTS application_portal (
 	id INT AUTO_INCREMENT,
 	name VARCHAR(128) NOT NULL,
@@ -13,6 +15,7 @@ CREATE TABLE IF NOT EXISTS application_portal (
 	meeting_sched TIMESTAMP NOT NULL,
 	PRIMARY KEY(id)
 ) ENGINE = INNODB;
+
 CREATE TABLE IF NOT EXISTS application_portal_admin (
 	id INT AUTO_INCREMENT,
 	name VARCHAR(128) NOT NULL,

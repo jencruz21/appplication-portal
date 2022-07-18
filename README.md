@@ -7,6 +7,15 @@ this is the possible location: C:/xampp
 Extract the files into the folder named "application-portal"
 move the folder to C:/xampp/htdocs
 
+After installing and starting XAMPP go to 
+    localhost/phpmyadmin
+and import the script inside 
+    pplication-portal/sql
+
+after that run the file in 
+    application-portal/admin/includes/fake-account.php
+to set-up your fake account for development uses
+
 ========= Before running the application. =========
 
 Install the package manager for PHP composer
